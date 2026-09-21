@@ -1,0 +1,34 @@
+{
+  "id": "s1-bill_after_bank_line",
+  "seed": 1,
+  "labels": [
+    "bill_after_bank_line"
+  ],
+  "expected": [
+    {
+      "label": "bill_after_bank_line",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-03",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "389.25",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "389.25"
+            }
+          ],
+          "memo": "Payment B-0009"
+        }
+      ],
+      "note": "The vendor was paid before its bill was received; the bill is already in payables."
+    }
+  ]
+}

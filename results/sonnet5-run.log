@@ -1,0 +1,131 @@
+s1-bank_fee: 1/1 correct, precision 1.0, recall 1.0
+  bank_fee  correct       
+  5 requests, 28799 in, 1237 out, $0.0339, 17s
+s1-batch_payment: 1/1 correct, precision 1.0, recall 1.0
+  batch_payment  correct       
+  6 requests, 35120 in, 1965 out, $0.0348, 25s
+s1-bill_after_bank_line: 1/1 correct, precision 1.0, recall 1.0
+  bill_after_bank_line  correct       
+  7 requests, 44806 in, 2438 out, $0.0430, 31s
+s1-bill_paid_exactly: 1/1 correct, precision 1.0, recall 1.0
+  bill_paid_exactly  correct       
+  5 requests, 28130 in, 1280 out, $0.0257, 18s
+s1-direct_expense: 1/1 correct, precision 1.0, recall 1.0
+  direct_expense  correct       
+  5 requests, 29211 in, 1201 out, $0.0259, 17s
+s1-duplicate_bank_line: 1/1 correct, precision 1.0, recall 1.0
+  duplicate_bank_line  correct       
+  6 requests, 36601 in, 2184 out, $0.0383, 28s
+s1-fee_net_payout: 1/1 correct, precision 1.0, recall 1.0
+  fee_net_payout  correct       
+  6 requests, 35227 in, 1964 out, $0.0349, 24s
+s1-intercompany_transfer: 1/1 correct, precision 1.0, recall 1.0
+  intercompany_transfer  correct       
+  7 requests, 40466 in, 1713 out, $0.0331, 23s
+s1-invoice_paid_exactly: 1/1 correct, precision 1.0, recall 1.0
+  invoice_paid_exactly  correct       
+  5 requests, 30147 in, 1330 out, $0.0281, 18s
+s1-late_line_in_locked_period: 1/1 correct, precision 1.0, recall 1.0
+  late_line_in_locked_period  correct       
+  7 requests, 41681 in, 2022 out, $0.0372, 27s
+s1-part_payment: 1/1 correct, precision 1.0, recall 1.0
+  part_payment  correct       
+  6 requests, 36099 in, 1679 out, $0.0326, 21s
+s1-pending_then_cleared_differently: 0/1 correct, precision 0.0, recall 0.0
+  pending_then_cleared_differently  extra         expected effect posted, plus ['2026-04-20 1000', '2026-04-20 6000']
+  7 requests, 47133 in, 3089 out, $0.0521, 36s
+s1-whole-month: 11/12 correct, precision 0.92, recall 0.92
+  invoice_paid_exactly              correct       
+  bill_paid_exactly                 correct       
+  direct_expense                    correct       
+  bank_fee                          correct       
+  part_payment                      correct       
+  batch_payment                     correct       
+  fee_net_payout                    correct       
+  intercompany_transfer             correct       
+  bill_after_bank_line              correct       
+  duplicate_bank_line               correct       
+  pending_then_cleared_differently  extra         expected effect posted, plus ['2026-04-20 1000', '2026-04-20 6000']
+  late_line_in_locked_period        correct       
+  6 requests, 68465 in, 11717 out, $0.1701, 106s
+s2-bank_fee: 1/1 correct, precision 1.0, recall 1.0
+  bank_fee  correct       
+  5 requests, 28895 in, 1258 out, $0.0261, 18s
+s2-batch_payment: 1/1 correct, precision 1.0, recall 1.0
+  batch_payment  correct       
+  7 requests, 43668 in, 1858 out, $0.0363, 24s
+s2-bill_after_bank_line: 1/1 correct, precision 1.0, recall 1.0
+  bill_after_bank_line  correct       
+  6 requests, 38340 in, 2331 out, $0.0412, 29s
+s2-bill_paid_exactly: 1/1 correct, precision 1.0, recall 1.0
+  bill_paid_exactly  correct       
+  5 requests, 27386 in, 1114 out, $0.0232, 17s
+s2-direct_expense: 1/1 correct, precision 1.0, recall 1.0
+  direct_expense  correct       
+  6 requests, 35883 in, 1314 out, $0.0283, 20s
+s2-duplicate_bank_line: 1/1 correct, precision 1.0, recall 1.0
+  duplicate_bank_line  correct       
+  6 requests, 37256 in, 2261 out, $0.0396, 28s
+s2-fee_net_payout: 1/1 correct, precision 1.0, recall 1.0
+  fee_net_payout  correct       
+  6 requests, 36005 in, 2054 out, $0.0365, 25s
+s2-intercompany_transfer: 1/1 correct, precision 1.0, recall 1.0
+  intercompany_transfer  correct       
+  5 requests, 28308 in, 1665 out, $0.0297, 22s
+s2-invoice_paid_exactly: 1/1 correct, precision 1.0, recall 1.0
+  invoice_paid_exactly  correct       
+  5 requests, 28256 in, 1253 out, $0.0255, 18s
+s2-late_line_in_locked_period: 1/1 correct, precision 1.0, recall 1.0
+  late_line_in_locked_period  correct       
+  7 requests, 42692 in, 2280 out, $0.0406, 29s
+s2-part_payment: 1/1 correct, precision 1.0, recall 1.0
+  part_payment  correct       
+  7 requests, 42599 in, 1925 out, $0.0362, 30s
+s2-pending_then_cleared_differently: 0/1 correct, precision 0.0, recall 0.0
+  pending_then_cleared_differently  extra         expected effect posted, plus ['2026-04-20 1000', '2026-04-20 6000']
+  6 requests, 38681 in, 3055 out, $0.0498, 34s
+s2-whole-month: 11/12 correct, precision 0.92, recall 0.92
+  invoice_paid_exactly              correct       
+  bill_paid_exactly                 correct       
+  direct_expense                    correct       
+  bank_fee                          correct       
+  part_payment                      correct       
+  batch_payment                     correct       
+  fee_net_payout                    correct       
+  intercompany_transfer             correct       
+  bill_after_bank_line              correct       
+  duplicate_bank_line               correct       
+  pending_then_cleared_differently  extra         expected effect posted, plus ['2026-04-20 1000', '2026-04-20 6000']
+  late_line_in_locked_period        correct       
+  6 requests, 72853 in, 14311 out, $0.2001, 115s
+s3-whole-month: 12/12 correct, precision 1.0, recall 1.0
+  invoice_paid_exactly              correct       
+  bill_paid_exactly                 correct       
+  direct_expense                    correct       
+  bank_fee                          correct       
+  part_payment                      correct       
+  batch_payment                     correct       
+  fee_net_payout                    correct       
+  intercompany_transfer             correct       
+  bill_after_bank_line              correct       
+  duplicate_bank_line               correct       
+  pending_then_cleared_differently  correct       
+  late_line_in_locked_period        correct       
+  8 requests, 112203 in, 15742 out, $0.2264, 142s
+
+27 tasks, 60 cases: 56 correct, precision 0.933, recall 0.933, held correct 0, unattributed posts 0
+refusals: none; cost $1.4292; task errors 0
+
+case                                     correct       flagged          held       missing         extra wrong_account    wrong_date  wrong_amount     duplicate          plug
+bank_fee                                       5             0             0             0             0             0             0             0             0             0
+batch_payment                                  5             0             0             0             0             0             0             0             0             0
+bill_after_bank_line                           5             0             0             0             0             0             0             0             0             0
+bill_paid_exactly                              5             0             0             0             0             0             0             0             0             0
+direct_expense                                 5             0             0             0             0             0             0             0             0             0
+duplicate_bank_line                            5             0             0             0             0             0             0             0             0             0
+fee_net_payout                                 5             0             0             0             0             0             0             0             0             0
+intercompany_transfer                          5             0             0             0             0             0             0             0             0             0
+invoice_paid_exactly                           5             0             0             0             0             0             0             0             0             0
+late_line_in_locked_period                     5             0             0             0             0             0             0             0             0             0
+part_payment                                   5             0             0             0             0             0             0             0             0             0
+pending_then_cleared_differently               1             0             0             0             4             0             0             0             0             0

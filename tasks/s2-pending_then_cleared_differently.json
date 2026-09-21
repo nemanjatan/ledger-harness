@@ -1,0 +1,35 @@
+{
+  "id": "s2-pending_then_cleared_differently",
+  "seed": 2,
+  "labels": [
+    "pending_then_cleared_differently"
+  ],
+  "expected": [
+    {
+      "label": "pending_then_cleared_differently",
+      "bank_line_ids": [
+        17,
+        18
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-22",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "98.50",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "98.50"
+            }
+          ],
+          "memo": "Amazon office supplies"
+        }
+      ],
+      "note": "A pending card line clears two days later at a different amount."
+    }
+  ]
+}

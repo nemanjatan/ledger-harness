@@ -1,0 +1,34 @@
+{
+  "id": "s1-batch_payment",
+  "seed": 1,
+  "labels": [
+    "batch_payment"
+  ],
+  "expected": [
+    {
+      "label": "batch_payment",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-27",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2392.06",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "2392.06"
+            }
+          ],
+          "memo": "Payment INV-0007 and INV-0009"
+        }
+      ],
+      "note": "One receipt settles several invoices."
+    }
+  ]
+}

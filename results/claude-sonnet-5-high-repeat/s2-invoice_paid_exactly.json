@@ -1,0 +1,680 @@
+{
+  "task": "s2-invoice_paid_exactly",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 19.03,
+  "error": null,
+  "score": {
+    "task_id": "s2-invoice_paid_exactly",
+    "results": [
+      {
+        "label": "invoice_paid_exactly",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-25 1000": "754.51",
+          "2026-04-25 1100": "-754.51"
+        },
+        "posted": {
+          "2026-04-25 1000": "754.51",
+          "2026-04-25 1100": "-754.51"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 5,
+    "input_tokens": 9,
+    "output_tokens": 1250,
+    "cache_creation_input_tokens": 3908,
+    "cache_read_input_tokens": 26606,
+    "cost_usd": "0.0276"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 40,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line_id:17",
+          "invoice:INV-0013 outstanding 754.51",
+          "history entries 24-29 showing same debit 1000/credit 1100 pattern for invoice receipts"
+        ],
+        "rule": "Customer receipt matching an open invoice settles accounts receivable: debit Cash at bank, credit Accounts receivable.",
+        "confidence": 0.97,
+        "reason": "Bank line 17 is a cleared receipt of $754.51 referencing INV-0013 from Harbour Books, which exactly matches the outstanding balance of open invoice INV-0013. This mirrors the established pattern for prior invoice payments in the ledger history."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-25",
+          "amount": "754.51",
+          "reference": "INV-0013",
+          "counterparty": "Harbour Books",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "INV-00",
+        "limit": 10
+      },
+      "result": [
+        {
+          "bank_line_id": 5,
+          "booked_on": "2026-03-12",
+          "amount": "1935.84",
+          "reference": "INV-0005",
+          "counterparty": "Northwind Traders",
+          "entry_id": 28,
+          "posting_date": "2026-03-12",
+          "memo": "Payment INV-0005 from Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1935.84,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1935.84
+            }
+          ]
+        },
+        {
+          "bank_line_id": 4,
+          "booked_on": "2026-02-27",
+          "amount": "1740.69",
+          "reference": "INV-0004",
+          "counterparty": "Orbital Coffee",
+          "entry_id": 27,
+          "posting_date": "2026-02-27",
+          "memo": "Payment INV-0004 from Orbital Coffee",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1740.69,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1740.69
+            }
+          ]
+        },
+        {
+          "bank_line_id": 6,
+          "booked_on": "2026-02-27",
+          "amount": "1823.71",
+          "reference": "INV-0006",
+          "counterparty": "Harbour Books",
+          "entry_id": 29,
+          "posting_date": "2026-02-27",
+          "memo": "Payment INV-0006 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1823.71,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1823.71
+            }
+          ]
+        },
+        {
+          "bank_line_id": 3,
+          "booked_on": "2026-02-02",
+          "amount": "809.51",
+          "reference": "INV-0003",
+          "counterparty": "Larkspur Events",
+          "entry_id": 26,
+          "posting_date": "2026-02-02",
+          "memo": "Payment INV-0003 from Larkspur Events",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 809.51,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 809.51
+            }
+          ]
+        },
+        {
+          "bank_line_id": 2,
+          "booked_on": "2026-01-30",
+          "amount": "2079.30",
+          "reference": "INV-0002",
+          "counterparty": "Kestrel Studio",
+          "entry_id": 25,
+          "posting_date": "2026-01-30",
+          "memo": "Payment INV-0002 from Kestrel Studio",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 2079.3,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 2079.3
+            }
+          ]
+        },
+        {
+          "bank_line_id": 1,
+          "booked_on": "2026-01-20",
+          "amount": "372.48",
+          "reference": "INV-0001",
+          "counterparty": "Northwind Traders",
+          "entry_id": 24,
+          "posting_date": "2026-01-20",
+          "memo": "Payment INV-0001 from Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 372.48,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 372.48
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Payment INV-0013 from Harbour Books",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "754.51"
+          },
+          {
+            "account": "1100",
+            "credit": "754.51"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 40,
+        "reasoning": {
+          "evidence": [
+            "bank_line_id:17",
+            "invoice:INV-0013 outstanding 754.51",
+            "history entries 24-29 showing same debit 1000/credit 1100 pattern for invoice receipts"
+          ],
+          "rule": "Customer receipt matching an open invoice settles accounts receivable: debit Cash at bank, credit Accounts receivable.",
+          "confidence": 0.97,
+          "reason": "Bank line 17 is a cleared receipt of $754.51 referencing INV-0013 from Harbour Books, which exactly matches the outstanding balance of open invoice INV-0013. This mirrors the established pattern for prior invoice payments in the ledger history."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Reviewed the single unrecorded bank line (id 17: $754.51 cleared receipt from Harbour Books referencing INV-0013, dated 2026-04-25). It matches the outstanding balance of open invoice INV-0013 exactly, consistent with the historical pattern of recording customer receipts as debit Cash at bank / credit Accounts receivable. Posted entry 40 for this on its bank date (within the open April period), linked to bank line 17. No other unrecorded bank lines existed. Remaining open invoices and bills have no corresponding bank activity and are left unposted per the rule that unpaid items with no evidence should not be recorded.",
+  "transcript": [
+    [
+      {
+        "signature": "EosCCpABCBEYAipAQNX3yHzLrhB5qwZKBOtGonGZqyKiaTydwR6ml4cwg8XmiThzCThHMxuCC8BADLzXfHYjLywDhfLzr86wOiR47TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAcr9s9UGEgzBv8pj9Po1KwKt5xkaDOyCE960GiJsSx95YCIwdZ8ry+kZgxsTIsi5jbaeYGijgVkre5CT4Vd2Hx6dIB9tMdRW1b9o1UMJI+UgOHM0Kij5T+p6/4Q62MpAHl2jMPJxVckFzwAwxP1v1xia4Y4cmrQ4gwEbqgW9GAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01GA7iZKQLHDajZHfBg1C6uY",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_018LSo4kHsPbDno2E488wZWe",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_019sSbkWhN9k3paHX5creKwC",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01KxHaHAhtAzf1Kw5gSaAmFY",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_014S9EP9A5VNhaEvNW8KWD5H",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_015pHuRaecrL333LPNoAyJ18",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01MsaVqyvoGYzRLW5mbeyB1E",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "EvsDCpABCBEYAipA8FOe9Je/sWafglVWefyU7i+ekODgRlvG8vfkJ+miycAfZ1kO9CgKPbEZT7i5QtW+jejeI89EeEmNddM1OJwoQzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAc79s9UGEgzfXnFqGVLp/A6a6JcaDI0wHtzAI3CJ1pNbaiIwDj4QfQjPpAQLCay3O22h3jjalIXhDxqMZcwHDFLeaHyUNb9S6qPkfIGRpeyAcH0SKpcCY3BY5SPVF/5USTPacKs684yjNLy0Op2mix05yjMZyHqZwQlmZT1YSXgMdy9PPiZ1uyV3xWlQoqYnlrJHM49jH40bKwVJV6blGvz0agtUr8dBEijPsiOcRi7mKGJ/Qz2f/mxl/AVjHDoHAdOBbWUc2yikUJFKBVLdyGsXMCFMKvSK4GPeTXohMiqhOF25xq7xiR1gFS+j5HfIPRFqsvgM1nHEr6rkptvgXLua3drobk9ZM0Cv3/rZZOuZPbHzcmDzIzc0+ja4Bdnj8gcr0U0Ez/lEkc33te2i3L6h5tM7/9VSSH9EEr5i3iLU+ZFEIbKtGSinDotufr0QuPExS3HHEtTbAa1zTOBANwh2QPxB5M3eUYOsqt9iGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01C5Dq6fVEMDumELArL6XgMY",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "INV-00",
+          "limit": 10
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "Consistent pattern confirmed. Now I'll draft and post the entry for bank line 17 (INV-0013, Harbour Books, $754.51, 2026-04-25 \u2014 in the open April period).",
+        "type": "text"
+      },
+      {
+        "id": "toolu_019zT6pZoQo1VwFLTVdis6ZH",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Payment INV-0013 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "754.51"
+            },
+            {
+              "account": "1100",
+              "credit": "754.51"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_016DTZTgRuD7J75eroASy6hp",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 40,
+          "reasoning": {
+            "evidence": [
+              "bank_line_id:17",
+              "invoice:INV-0013 outstanding 754.51",
+              "history entries 24-29 showing same debit 1000/credit 1100 pattern for invoice receipts"
+            ],
+            "rule": "Customer receipt matching an open invoice settles accounts receivable: debit Cash at bank, credit Accounts receivable.",
+            "confidence": 0.97,
+            "reason": "Bank line 17 is a cleared receipt of $754.51 referencing INV-0013 from Harbour Books, which exactly matches the outstanding balance of open invoice INV-0013. This mirrors the established pattern for prior invoice payments in the ledger history."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "All other invoices/bills have no corresponding bank activity (consistent with the rule that an unpaid invoice with no evidence should be left alone), and there is only the one unrecorded bank line, which is now recorded.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XuqymVGiNaf7onG634p9aJ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Reviewed the single unrecorded bank line (id 17: $754.51 cleared receipt from Harbour Books referencing INV-0013, dated 2026-04-25). It matches the outstanding balance of open invoice INV-0013 exactly, consistent with the historical pattern of recording customer receipts as debit Cash at bank / credit Accounts receivable. Posted entry 40 for this on its bank date (within the open April period), linked to bank line 17. No other unrecorded bank lines existed. Remaining open invoices and bills have no corresponding bank activity and are left unposted per the rule that unpaid items with no evidence should not be recorded."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

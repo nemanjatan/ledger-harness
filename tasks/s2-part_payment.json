@@ -1,0 +1,34 @@
+{
+  "id": "s2-part_payment",
+  "seed": 2,
+  "labels": [
+    "part_payment"
+  ],
+  "expected": [
+    {
+      "label": "part_payment",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-26",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "450.13",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "450.13"
+            }
+          ],
+          "memo": "Part payment INV-0007"
+        }
+      ],
+      "note": "A customer pays part of an invoice; the rest stays receivable."
+    }
+  ]
+}

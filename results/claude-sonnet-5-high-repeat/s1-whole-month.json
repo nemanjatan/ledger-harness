@@ -1,0 +1,2952 @@
+{
+  "task": "s1-whole-month",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 110.056,
+  "error": null,
+  "score": {
+    "task_id": "s1-whole-month",
+    "results": [
+      {
+        "label": "invoice_paid_exactly",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-25 1000": "1949.57",
+          "2026-04-25 1100": "-1949.57"
+        },
+        "posted": {
+          "2026-04-25 1000": "1949.57",
+          "2026-04-25 1100": "-1949.57"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "bill_paid_exactly",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-25 1000": "-696.40",
+          "2026-04-25 2000": "696.40"
+        },
+        "posted": {
+          "2026-04-25 1000": "-696.40",
+          "2026-04-25 2000": "696.40"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "direct_expense",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-05 1000": "-21.00",
+          "2026-04-05 6100": "21.00"
+        },
+        "posted": {
+          "2026-04-05 1000": "-21.00",
+          "2026-04-05 6100": "21.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "bank_fee",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-30 1000": "-12.00",
+          "2026-04-30 6200": "12.00"
+        },
+        "posted": {
+          "2026-04-30 1000": "-12.00",
+          "2026-04-30 6200": "12.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "part_payment",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-26 1000": "821.11",
+          "2026-04-26 1100": "-821.11"
+        },
+        "posted": {
+          "2026-04-26 1000": "821.11",
+          "2026-04-26 1100": "-821.11"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "batch_payment",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-27 1000": "2392.06",
+          "2026-04-27 1100": "-2392.06"
+        },
+        "posted": {
+          "2026-04-27 1000": "2392.06",
+          "2026-04-27 1100": "-2392.06"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "fee_net_payout",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-28 1000": "3505.44",
+          "2026-04-28 1100": "-3610.75",
+          "2026-04-28 6300": "105.31"
+        },
+        "posted": {
+          "2026-04-28 1000": "3505.44",
+          "2026-04-28 1100": "-3610.75",
+          "2026-04-28 6300": "105.31"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "intercompany_transfer",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-11 1000": "2000.00",
+          "2026-04-11 2200": "-2000.00"
+        },
+        "posted": {
+          "2026-04-11 1000": "2000.00",
+          "2026-04-11 2200": "-2000.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "bill_after_bank_line",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-03 1000": "-389.25",
+          "2026-04-03 2000": "389.25"
+        },
+        "posted": {
+          "2026-04-03 1000": "-389.25",
+          "2026-04-03 2000": "389.25"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "duplicate_bank_line",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-29 1000": "208.51",
+          "2026-04-29 1100": "-208.51"
+        },
+        "posted": {
+          "2026-04-29 1000": "208.51",
+          "2026-04-29 1100": "-208.51"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      },
+      {
+        "label": "pending_then_cleared_differently",
+        "outcome": "extra",
+        "expected": {
+          "2026-04-22 1000": "-98.50",
+          "2026-04-22 6000": "98.50"
+        },
+        "posted": {
+          "2026-04-20 1000": "-100.00",
+          "2026-04-20 6000": "100.00",
+          "2026-04-22 1000": "-98.50",
+          "2026-04-22 6000": "98.50"
+        },
+        "drafted": {},
+        "posted_entries": 2,
+        "detail": "expected effect posted, plus ['2026-04-20 1000', '2026-04-20 6000']"
+      },
+      {
+        "label": "late_line_in_locked_period",
+        "outcome": "correct",
+        "expected": {
+          "2026-03-01 1000": "-45.00",
+          "2026-03-01 6000": "45.00"
+        },
+        "posted": {
+          "2026-03-01 1000": "-45.00",
+          "2026-03-01 6000": "45.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 12,
+    "posted_cases": 12,
+    "correct": 11,
+    "held_correct": 0,
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "outcomes": {
+      "correct": 11,
+      "extra": 1
+    }
+  },
+  "usage": {
+    "requests": 6,
+    "input_tokens": 11,
+    "output_tokens": 13459,
+    "cache_creation_input_tokens": 18137,
+    "cache_read_input_tokens": 54760,
+    "cost_usd": "0.1909"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 54,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 30 (2026-02-27, -45.00, Courier Express)",
+          "vendor list: Courier Express default expense account 6000",
+          "open_bills: no bill from Courier Express"
+        ],
+        "rule": "Payment with no matching bill posts to vendor's default expense account; Feb is locked so post on first open period's first day (2026-03-01) with original bank date in memo.",
+        "confidence": 0.9,
+        "reason": "No bill exists for Courier Express, so this is a direct expense payment; period Feb is locked, so posted 2026-03-01 per policy with the true bank date noted in the memo."
+      }
+    },
+    {
+      "entry_id": 55,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 25 (2026-04-03, -389.25, Cloudwave Hosting)",
+          "open_bills: B-0009 Cloudwave Hosting outstanding 389.25"
+        ],
+        "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+        "confidence": 0.97,
+        "reason": "The payment amount exactly matches the outstanding balance of bill B-0009 from Cloudwave Hosting, so this settles that payable."
+      }
+    },
+    {
+      "entry_id": 56,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 19 (2026-04-05, -21.00, GitHub)",
+          "vendor list: GitHub default expense account 6100",
+          "open_bills: no bill from GitHub"
+        ],
+        "rule": "Payment with no matching bill posts to vendor's default expense account.",
+        "confidence": 0.9,
+        "reason": "No open bill exists for GitHub, so this recurring subscription charge is booked directly as a software subscription expense per the vendor's default account."
+      }
+    },
+    {
+      "entry_id": 57,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 24 (2026-04-11, +2000.00, Beta Ltd, INTERCO FUNDING)",
+          "chart of accounts: 2200 Due to Beta Ltd (intercompany)"
+        ],
+        "rule": "Intercompany funding received increases the intercompany liability account.",
+        "confidence": 0.75,
+        "reason": "Money received from Beta Ltd referenced as intercompany funding is recorded against the dedicated intercompany liability account, increasing what is due to Beta Ltd, since there is no invoice or sale behind it."
+      }
+    },
+    {
+      "entry_id": 58,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 28 (2026-04-20, -100.00, Amazon, pending)",
+          "vendor list: Amazon default expense account 6000",
+          "open_bills: no bill from Amazon"
+        ],
+        "rule": "Payment with no matching bill posts to vendor's default expense account, regardless of pending clearance status since the transaction occurred.",
+        "confidence": 0.8,
+        "reason": "No bill exists for this Amazon charge, so it is booked as an office expense per the vendor's default account; pending status does not change that the purchase happened."
+      }
+    },
+    {
+      "entry_id": 59,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 29 (2026-04-22, -98.50, Amazon.co.uk)",
+          "vendor list: Amazon default expense account 6000",
+          "open_bills: no bill from Amazon"
+        ],
+        "rule": "Payment with no matching bill posts to vendor's default expense account.",
+        "confidence": 0.85,
+        "reason": "No open bill matches this Amazon charge, a separate purchase from the other Amazon line on a different date/amount, so it is booked as an office expense."
+      }
+    },
+    {
+      "entry_id": 60,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 17 (2026-04-25, +1949.57, Northwind Traders, ref INV-0012)",
+          "open_invoices: INV-0012 outstanding 1949.57"
+        ],
+        "rule": "Customer receipt matching invoice amount settles accounts receivable.",
+        "confidence": 0.98,
+        "reason": "The receipt exactly matches the outstanding balance of INV-0012, so it settles that receivable."
+      }
+    },
+    {
+      "entry_id": 61,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 18 (2026-04-25, -696.40, Office Greens, ref B-0005)",
+          "open_bills: B-0005 outstanding 696.40"
+        ],
+        "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+        "confidence": 0.98,
+        "reason": "The payment exactly matches the outstanding balance of bill B-0005 from Office Greens, so it settles that payable."
+      }
+    },
+    {
+      "entry_id": 62,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 21 (2026-04-26, +821.11, Harbour Books, ref INV-0013 PART)",
+          "open_invoices: INV-0013 outstanding 2052.77"
+        ],
+        "rule": "Partial customer receipt reduces the specific invoice's receivable balance.",
+        "confidence": 0.9,
+        "reason": "The reference explicitly marks this as a partial payment toward INV-0013, so it is recorded as a partial settlement of that receivable, leaving the remainder open."
+      }
+    },
+    {
+      "entry_id": 63,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 22 (2026-04-27, +2392.06, Orbital Coffee, ref INV-0007 INV-0009)",
+          "open_invoices: INV-0007 outstanding 1974.08, INV-0009 outstanding 417.98, sum 2392.06"
+        ],
+        "rule": "Combined customer receipt matching sum of two named invoices settles both receivables.",
+        "confidence": 0.97,
+        "reason": "The receipt amount exactly equals the combined outstanding balance of INV-0007 and INV-0009, both referenced explicitly, so it settles both."
+      }
+    },
+    {
+      "entry_id": 64,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 23 (2026-04-28, +3505.44, Stripe payout)",
+          "payout_reports id 1: gross 3610.75, fees 105.31, net 3505.44, invoices INV-0008 and INV-0011",
+          "open_invoices: INV-0008 outstanding 2041.47, INV-0011 outstanding 1569.28, sum 3610.75"
+        ],
+        "rule": "Card processor payout is recorded gross with fees expensed, matched to the settled invoices per the payout report.",
+        "confidence": 0.97,
+        "reason": "The payout report confirms this net deposit corresponds to gross collections of 3610.75 for INV-0008 and INV-0011 less 105.31 in processing fees, matching outstanding invoice balances exactly."
+      }
+    },
+    {
+      "entry_id": 65,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 26 (2026-04-29, +208.51, Kestrel Studio, ref INV-0010)",
+          "bank_line 27 (2026-04-29, +208.51, Kestrel Studio, ref PAYMENT INV0010)",
+          "open_invoices: INV-0010 outstanding 208.51"
+        ],
+        "rule": "Duplicate bank lines for the same invoice payment are recorded once, with both lines linked to the single entry.",
+        "confidence": 0.85,
+        "reason": "Two bank lines on the same day, same amount, same customer and invoice reference clearly represent a single duplicated bank feed entry for INV-0010's exact outstanding balance; only one receipt entry is warranted, covering both lines."
+      }
+    },
+    {
+      "entry_id": 66,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 20 (2026-04-30, -12.00, MONTHLY ACCOUNT FEE)",
+          "history_for MONTHLY ACCOUNT FEE: prior entries 34, 35, 36 all booked -12.00 to account 6200 Bank charges"
+        ],
+        "rule": "Recurring bank fee follows established historical booking pattern to Bank charges.",
+        "confidence": 0.97,
+        "reason": "This month's account fee matches the exact recurring pattern of prior months, consistently posted to Bank charges account 6200."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 30,
+          "booked_on": "2026-02-27",
+          "amount": "-45.00",
+          "reference": "COURIER EXPRESS",
+          "counterparty": "Courier Express",
+          "status": "cleared"
+        },
+        {
+          "id": 25,
+          "booked_on": "2026-04-03",
+          "amount": "-389.25",
+          "reference": "CLOUDWAVE HOSTING",
+          "counterparty": "Cloudwave Hosting",
+          "status": "cleared"
+        },
+        {
+          "id": 19,
+          "booked_on": "2026-04-05",
+          "amount": "-21.00",
+          "reference": "GITHUB",
+          "counterparty": "GitHub",
+          "status": "cleared"
+        },
+        {
+          "id": 24,
+          "booked_on": "2026-04-11",
+          "amount": "2000.00",
+          "reference": "INTERCO FUNDING",
+          "counterparty": "Beta Ltd",
+          "status": "cleared"
+        },
+        {
+          "id": 28,
+          "booked_on": "2026-04-20",
+          "amount": "-100.00",
+          "reference": "AMZN MKTP",
+          "counterparty": "Amazon",
+          "status": "pending"
+        },
+        {
+          "id": 29,
+          "booked_on": "2026-04-22",
+          "amount": "-98.50",
+          "reference": "AMAZON.CO.UK",
+          "counterparty": "Amazon",
+          "status": "cleared"
+        },
+        {
+          "id": 17,
+          "booked_on": "2026-04-25",
+          "amount": "1949.57",
+          "reference": "INV-0012",
+          "counterparty": "Northwind Traders",
+          "status": "cleared"
+        },
+        {
+          "id": 18,
+          "booked_on": "2026-04-25",
+          "amount": "-696.40",
+          "reference": "OFFICE GREENS B-0005",
+          "counterparty": "Office Greens",
+          "status": "cleared"
+        },
+        {
+          "id": 21,
+          "booked_on": "2026-04-26",
+          "amount": "821.11",
+          "reference": "INV-0013 PART",
+          "counterparty": "Harbour Books",
+          "status": "cleared"
+        },
+        {
+          "id": 22,
+          "booked_on": "2026-04-27",
+          "amount": "2392.06",
+          "reference": "INV-0007 INV-0009",
+          "counterparty": "Orbital Coffee",
+          "status": "cleared"
+        },
+        {
+          "id": 23,
+          "booked_on": "2026-04-28",
+          "amount": "3505.44",
+          "reference": "STRIPE PAYOUT",
+          "counterparty": "Stripe",
+          "status": "cleared"
+        },
+        {
+          "id": 26,
+          "booked_on": "2026-04-29",
+          "amount": "208.51",
+          "reference": "INV-0010",
+          "counterparty": "Kestrel Studio",
+          "status": "cleared"
+        },
+        {
+          "id": 27,
+          "booked_on": "2026-04-29",
+          "amount": "208.51",
+          "reference": "PAYMENT INV0010",
+          "counterparty": "KESTREL STUDIO",
+          "status": "cleared"
+        },
+        {
+          "id": 20,
+          "booked_on": "2026-04-30",
+          "amount": "-12.00",
+          "reference": "MONTHLY ACCOUNT FEE",
+          "counterparty": "",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "208.51",
+          "outstanding": "208.51"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "1974.08",
+          "outstanding": "1974.08"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-10",
+          "due_on": "2026-04-09",
+          "amount": "2041.47",
+          "outstanding": "2041.47"
+        },
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-20",
+          "due_on": "2026-04-19",
+          "amount": "417.98",
+          "outstanding": "417.98"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1949.57",
+          "outstanding": "1949.57"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-15",
+          "due_on": "2026-05-15",
+          "amount": "2052.77",
+          "outstanding": "2052.77"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-18",
+          "due_on": "2026-05-18",
+          "amount": "731.15",
+          "outstanding": "731.15"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-22",
+          "due_on": "2026-05-22",
+          "amount": "1569.28",
+          "outstanding": "1569.28"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-12",
+          "due_on": "2026-03-26",
+          "amount": "696.40",
+          "outstanding": "696.40"
+        },
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "288.83",
+          "outstanding": "288.83"
+        },
+        {
+          "id": 9,
+          "number": "B-0009",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-10",
+          "due_on": "2026-04-24",
+          "amount": "389.25",
+          "outstanding": "389.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-11",
+          "due_on": "2026-04-25",
+          "amount": "810.15",
+          "outstanding": "810.15"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Staples",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "555.57",
+          "outstanding": "555.57"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": [
+        {
+          "id": 1,
+          "processor": "Stripe",
+          "paid_on": "2026-04-28",
+          "gross": "3610.75",
+          "fees": "105.31",
+          "net": "3505.44",
+          "invoices": [
+            "INV-0008",
+            "INV-0011"
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "INTERCO",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "AMAZON",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "AMZN",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "KESTREL",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "COURIER",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "MONTHLY ACCOUNT FEE",
+        "limit": 5
+      },
+      "result": [
+        {
+          "bank_line_id": 13,
+          "booked_on": "2026-03-31",
+          "amount": "-12.00",
+          "reference": "MONTHLY ACCOUNT FEE",
+          "counterparty": "",
+          "entry_id": 36,
+          "posting_date": "2026-03-31",
+          "memo": "Monthly account fee",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": 12.0,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 12.0
+            }
+          ]
+        },
+        {
+          "bank_line_id": 12,
+          "booked_on": "2026-02-28",
+          "amount": "-12.00",
+          "reference": "MONTHLY ACCOUNT FEE",
+          "counterparty": "",
+          "entry_id": 35,
+          "posting_date": "2026-02-28",
+          "memo": "Monthly account fee",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": 12.0,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 12.0
+            }
+          ]
+        },
+        {
+          "bank_line_id": 11,
+          "booked_on": "2026-01-31",
+          "amount": "-12.00",
+          "reference": "MONTHLY ACCOUNT FEE",
+          "counterparty": "",
+          "entry_id": 34,
+          "posting_date": "2026-01-31",
+          "memo": "Monthly account fee",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": 12.0,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 12.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-03-01",
+        "memo": "Courier Express payment, bank date 2026-02-27",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "45.00",
+            "description": "Courier Express - no bill, vendor default expense"
+          },
+          {
+            "account": "1000",
+            "credit": "45.00",
+            "description": "Bank payment"
+          }
+        ],
+        "bank_line_ids": [
+          30
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-03",
+        "memo": "Pay bill B-0009 Cloudwave Hosting",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "389.25",
+            "description": "Settle B-0009"
+          },
+          {
+            "account": "1000",
+            "credit": "389.25",
+            "description": "Bank payment"
+          }
+        ],
+        "bank_line_ids": [
+          25
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-05",
+        "memo": "GitHub subscription - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6100",
+            "debit": "21.00"
+          },
+          {
+            "account": "1000",
+            "credit": "21.00"
+          }
+        ],
+        "bank_line_ids": [
+          19
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-11",
+        "memo": "Intercompany funding received from Beta Ltd",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2000.00"
+          },
+          {
+            "account": "2200",
+            "credit": "2000.00"
+          }
+        ],
+        "bank_line_ids": [
+          24
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-20",
+        "memo": "Amazon purchase - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "100.00"
+          },
+          {
+            "account": "1000",
+            "credit": "100.00"
+          }
+        ],
+        "bank_line_ids": [
+          28
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-22",
+        "memo": "Amazon purchase - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "98.50"
+          },
+          {
+            "account": "1000",
+            "credit": "98.50"
+          }
+        ],
+        "bank_line_ids": [
+          29
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Receipt INV-0012 Northwind Traders",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "1949.57"
+          },
+          {
+            "account": "1100",
+            "credit": "1949.57"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Pay bill B-0005 Office Greens",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "696.40"
+          },
+          {
+            "account": "1000",
+            "credit": "696.40"
+          }
+        ],
+        "bank_line_ids": [
+          18
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-26",
+        "memo": "Partial receipt INV-0013 Harbour Books",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "821.11"
+          },
+          {
+            "account": "1100",
+            "credit": "821.11"
+          }
+        ],
+        "bank_line_ids": [
+          21
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-27",
+        "memo": "Receipt INV-0007 and INV-0009 Orbital Coffee",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2392.06"
+          },
+          {
+            "account": "1100",
+            "credit": "2392.06"
+          }
+        ],
+        "bank_line_ids": [
+          22
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-28",
+        "memo": "Stripe payout covering INV-0008 and INV-0011, gross less fees",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "3505.44"
+          },
+          {
+            "account": "6300",
+            "debit": "105.31"
+          },
+          {
+            "account": "1100",
+            "credit": "3610.75"
+          }
+        ],
+        "bank_line_ids": [
+          23
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-29",
+        "memo": "Receipt INV-0010 Kestrel Studio (duplicate bank line 27 covered)",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "208.51"
+          },
+          {
+            "account": "1100",
+            "credit": "208.51"
+          }
+        ],
+        "bank_line_ids": [
+          26,
+          27
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-30",
+        "memo": "Monthly account fee",
+        "lines": [
+          {
+            "account": "6200",
+            "debit": "12.00"
+          },
+          {
+            "account": "1000",
+            "credit": "12.00"
+          }
+        ],
+        "bank_line_ids": [
+          20
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-03-01",
+        "memo": "Courier Express payment, bank date 2026-02-27",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "45.00",
+            "description": "Courier Express - no bill, vendor default expense"
+          },
+          {
+            "account": "1000",
+            "credit": "45.00",
+            "description": "Bank payment"
+          }
+        ],
+        "bank_line_ids": [
+          30
+        ],
+        "idempotency_key": "courier-30"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 54
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-03",
+        "memo": "Pay bill B-0009 Cloudwave Hosting",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "389.25",
+            "description": "Settle B-0009"
+          },
+          {
+            "account": "1000",
+            "credit": "389.25",
+            "description": "Bank payment"
+          }
+        ],
+        "bank_line_ids": [
+          25
+        ],
+        "idempotency_key": "cloudwave-25"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 55
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-05",
+        "memo": "GitHub subscription - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6100",
+            "debit": "21.00"
+          },
+          {
+            "account": "1000",
+            "credit": "21.00"
+          }
+        ],
+        "bank_line_ids": [
+          19
+        ],
+        "idempotency_key": "github-19"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 56
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-11",
+        "memo": "Intercompany funding received from Beta Ltd",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2000.00"
+          },
+          {
+            "account": "2200",
+            "credit": "2000.00"
+          }
+        ],
+        "bank_line_ids": [
+          24
+        ],
+        "idempotency_key": "interco-24"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 57
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-20",
+        "memo": "Amazon purchase - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "100.00"
+          },
+          {
+            "account": "1000",
+            "credit": "100.00"
+          }
+        ],
+        "bank_line_ids": [
+          28
+        ],
+        "idempotency_key": "amazon-28"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 58
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-22",
+        "memo": "Amazon purchase - no bill, vendor default expense",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "98.50"
+          },
+          {
+            "account": "1000",
+            "credit": "98.50"
+          }
+        ],
+        "bank_line_ids": [
+          29
+        ],
+        "idempotency_key": "amazon-29"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 59
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Receipt INV-0012 Northwind Traders",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "1949.57"
+          },
+          {
+            "account": "1100",
+            "credit": "1949.57"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "northwind-17"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 60
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Pay bill B-0005 Office Greens",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "696.40"
+          },
+          {
+            "account": "1000",
+            "credit": "696.40"
+          }
+        ],
+        "bank_line_ids": [
+          18
+        ],
+        "idempotency_key": "officegreens-18"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 61
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-26",
+        "memo": "Partial receipt INV-0013 Harbour Books",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "821.11"
+          },
+          {
+            "account": "1100",
+            "credit": "821.11"
+          }
+        ],
+        "bank_line_ids": [
+          21
+        ],
+        "idempotency_key": "harbour-21"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 62
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-27",
+        "memo": "Receipt INV-0007 and INV-0009 Orbital Coffee",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2392.06"
+          },
+          {
+            "account": "1100",
+            "credit": "2392.06"
+          }
+        ],
+        "bank_line_ids": [
+          22
+        ],
+        "idempotency_key": "orbital-22"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 63
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-28",
+        "memo": "Stripe payout covering INV-0008 and INV-0011, gross less fees",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "3505.44"
+          },
+          {
+            "account": "6300",
+            "debit": "105.31"
+          },
+          {
+            "account": "1100",
+            "credit": "3610.75"
+          }
+        ],
+        "bank_line_ids": [
+          23
+        ],
+        "idempotency_key": "stripe-23"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 64
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-29",
+        "memo": "Receipt INV-0010 Kestrel Studio (duplicate bank line 27 covered)",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "208.51"
+          },
+          {
+            "account": "1100",
+            "credit": "208.51"
+          }
+        ],
+        "bank_line_ids": [
+          26,
+          27
+        ],
+        "idempotency_key": "kestrel-26-27"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 65
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-30",
+        "memo": "Monthly account fee",
+        "lines": [
+          {
+            "account": "6200",
+            "debit": "12.00"
+          },
+          {
+            "account": "1000",
+            "credit": "12.00"
+          }
+        ],
+        "bank_line_ids": [
+          20
+        ],
+        "idempotency_key": "fee-20"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 66
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 54,
+        "reasoning": {
+          "evidence": [
+            "bank_line 30 (2026-02-27, -45.00, Courier Express)",
+            "vendor list: Courier Express default expense account 6000",
+            "open_bills: no bill from Courier Express"
+          ],
+          "rule": "Payment with no matching bill posts to vendor's default expense account; Feb is locked so post on first open period's first day (2026-03-01) with original bank date in memo.",
+          "confidence": 0.9,
+          "reason": "No bill exists for Courier Express, so this is a direct expense payment; period Feb is locked, so posted 2026-03-01 per policy with the true bank date noted in the memo."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 54,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 55,
+        "reasoning": {
+          "evidence": [
+            "bank_line 25 (2026-04-03, -389.25, Cloudwave Hosting)",
+            "open_bills: B-0009 Cloudwave Hosting outstanding 389.25"
+          ],
+          "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+          "confidence": 0.97,
+          "reason": "The payment amount exactly matches the outstanding balance of bill B-0009 from Cloudwave Hosting, so this settles that payable."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 55,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 56,
+        "reasoning": {
+          "evidence": [
+            "bank_line 19 (2026-04-05, -21.00, GitHub)",
+            "vendor list: GitHub default expense account 6100",
+            "open_bills: no bill from GitHub"
+          ],
+          "rule": "Payment with no matching bill posts to vendor's default expense account.",
+          "confidence": 0.9,
+          "reason": "No open bill exists for GitHub, so this recurring subscription charge is booked directly as a software subscription expense per the vendor's default account."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 56,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 57,
+        "reasoning": {
+          "evidence": [
+            "bank_line 24 (2026-04-11, +2000.00, Beta Ltd, INTERCO FUNDING)",
+            "chart of accounts: 2200 Due to Beta Ltd (intercompany)"
+          ],
+          "rule": "Intercompany funding received increases the intercompany liability account.",
+          "confidence": 0.75,
+          "reason": "Money received from Beta Ltd referenced as intercompany funding is recorded against the dedicated intercompany liability account, increasing what is due to Beta Ltd, since there is no invoice or sale behind it."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 57,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 58,
+        "reasoning": {
+          "evidence": [
+            "bank_line 28 (2026-04-20, -100.00, Amazon, pending)",
+            "vendor list: Amazon default expense account 6000",
+            "open_bills: no bill from Amazon"
+          ],
+          "rule": "Payment with no matching bill posts to vendor's default expense account, regardless of pending clearance status since the transaction occurred.",
+          "confidence": 0.8,
+          "reason": "No bill exists for this Amazon charge, so it is booked as an office expense per the vendor's default account; pending status does not change that the purchase happened."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 58,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 59,
+        "reasoning": {
+          "evidence": [
+            "bank_line 29 (2026-04-22, -98.50, Amazon.co.uk)",
+            "vendor list: Amazon default expense account 6000",
+            "open_bills: no bill from Amazon"
+          ],
+          "rule": "Payment with no matching bill posts to vendor's default expense account.",
+          "confidence": 0.85,
+          "reason": "No open bill matches this Amazon charge, a separate purchase from the other Amazon line on a different date/amount, so it is booked as an office expense."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 59,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 60,
+        "reasoning": {
+          "evidence": [
+            "bank_line 17 (2026-04-25, +1949.57, Northwind Traders, ref INV-0012)",
+            "open_invoices: INV-0012 outstanding 1949.57"
+          ],
+          "rule": "Customer receipt matching invoice amount settles accounts receivable.",
+          "confidence": 0.98,
+          "reason": "The receipt exactly matches the outstanding balance of INV-0012, so it settles that receivable."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 60,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 61,
+        "reasoning": {
+          "evidence": [
+            "bank_line 18 (2026-04-25, -696.40, Office Greens, ref B-0005)",
+            "open_bills: B-0005 outstanding 696.40"
+          ],
+          "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+          "confidence": 0.98,
+          "reason": "The payment exactly matches the outstanding balance of bill B-0005 from Office Greens, so it settles that payable."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 61,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 62,
+        "reasoning": {
+          "evidence": [
+            "bank_line 21 (2026-04-26, +821.11, Harbour Books, ref INV-0013 PART)",
+            "open_invoices: INV-0013 outstanding 2052.77"
+          ],
+          "rule": "Partial customer receipt reduces the specific invoice's receivable balance.",
+          "confidence": 0.9,
+          "reason": "The reference explicitly marks this as a partial payment toward INV-0013, so it is recorded as a partial settlement of that receivable, leaving the remainder open."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 62,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 63,
+        "reasoning": {
+          "evidence": [
+            "bank_line 22 (2026-04-27, +2392.06, Orbital Coffee, ref INV-0007 INV-0009)",
+            "open_invoices: INV-0007 outstanding 1974.08, INV-0009 outstanding 417.98, sum 2392.06"
+          ],
+          "rule": "Combined customer receipt matching sum of two named invoices settles both receivables.",
+          "confidence": 0.97,
+          "reason": "The receipt amount exactly equals the combined outstanding balance of INV-0007 and INV-0009, both referenced explicitly, so it settles both."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 63,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 64,
+        "reasoning": {
+          "evidence": [
+            "bank_line 23 (2026-04-28, +3505.44, Stripe payout)",
+            "payout_reports id 1: gross 3610.75, fees 105.31, net 3505.44, invoices INV-0008 and INV-0011",
+            "open_invoices: INV-0008 outstanding 2041.47, INV-0011 outstanding 1569.28, sum 3610.75"
+          ],
+          "rule": "Card processor payout is recorded gross with fees expensed, matched to the settled invoices per the payout report.",
+          "confidence": 0.97,
+          "reason": "The payout report confirms this net deposit corresponds to gross collections of 3610.75 for INV-0008 and INV-0011 less 105.31 in processing fees, matching outstanding invoice balances exactly."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 64,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 65,
+        "reasoning": {
+          "evidence": [
+            "bank_line 26 (2026-04-29, +208.51, Kestrel Studio, ref INV-0010)",
+            "bank_line 27 (2026-04-29, +208.51, Kestrel Studio, ref PAYMENT INV0010)",
+            "open_invoices: INV-0010 outstanding 208.51"
+          ],
+          "rule": "Duplicate bank lines for the same invoice payment are recorded once, with both lines linked to the single entry.",
+          "confidence": 0.85,
+          "reason": "Two bank lines on the same day, same amount, same customer and invoice reference clearly represent a single duplicated bank feed entry for INV-0010's exact outstanding balance; only one receipt entry is warranted, covering both lines."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 65,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 66,
+        "reasoning": {
+          "evidence": [
+            "bank_line 20 (2026-04-30, -12.00, MONTHLY ACCOUNT FEE)",
+            "history_for MONTHLY ACCOUNT FEE: prior entries 34, 35, 36 all booked -12.00 to account 6200 Bank charges"
+          ],
+          "rule": "Recurring bank fee follows established historical booking pattern to Bank charges.",
+          "confidence": 0.97,
+          "reason": "This month's account fee matches the exact recurring pattern of prior months, consistently posted to Bank charges account 6200."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 66,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Processed all 14 unrecorded bank lines (13 postings, one duplicate pair covered by one entry):\n\n1. Courier Express -45.00 (2026-02-27, locked period) \u2192 posted 2026-03-01 with bank date in memo; expensed to Office expenses (6000), no matching bill.\n2. Cloudwave Hosting -389.25 \u2192 settled bill B-0009 (AP).\n3. GitHub -21.00 \u2192 expensed to Software subscriptions (6100), no bill.\n4. Beta Ltd +2000.00 \"INTERCO FUNDING\" \u2192 credited intercompany liability account 2200.\n5. Amazon -100.00 (pending) \u2192 expensed to Office expenses (6000), no bill.\n6. Amazon.co.uk -98.50 \u2192 expensed to Office expenses (6000), no bill.\n7. Northwind Traders +1949.57 \u2192 settled INV-0012 in full.\n8. Office Greens -696.40 \u2192 settled bill B-0005 in full.\n9. Harbour Books +821.11 \"INV-0013 PART\" \u2192 partial settlement of INV-0013.\n10. Orbital Coffee +2392.06 \u2192 settled INV-0007 and INV-0009 in full (sum matches exactly).\n11. Stripe payout +3505.44 \u2192 recorded per payout report: gross 3610.75 settling INV-0008 and INV-0011, less 105.31 processing fees.\n12. Kestrel Studio +208.51 (bank lines 26 and 27, duplicate same-day/same-amount/same-invoice) \u2192 single receipt entry settling INV-0010, both bank lines linked to it.\n13. Monthly account fee -12.00 \u2192 booked to Bank charges (6200), consistent with prior months' history.\n\nNo invoice or bill was left unaddressed except INV-0014 (Northwind, no bank evidence) and Staples bills B-0006/B-0008, which per policy are left unpaid with no supporting evidence. Nothing was posted to suspense or miscellaneous accounts.",
+  "transcript": [
+    [
+      {
+        "signature": "Eo8CCpABCBEYAipA7u2j9F4wprVLY+8RCWVSS/tMjjpx4pAJRz2XwUmjv2qqiXLvhhKNeI6o0/ur0pmULvIUTWJ4Xyr/naKjGMosOzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAaT7s9UGEgyKaixDhs7ee/VX2b0aDIo05rA5z1eeRDaoYCIwjLQ60itcZzSNKDRVCTFogpZcx2v21gYQnMMcf/GI/0BH32M9/i3ZyfJPQcuEH4euKiz32dNbpBX/mnGO7SFtLQdjdBBrt2SfsbyNIsO0r6GTEIu9pVAI+NPRlI1MUxgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_017TikRimKNc7z5oPec9XBV6",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01UE71e37rHRa6RLqf9gLsnY",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01AbotAXDPy293PcDPLYXhTq",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01KSLdLNf9vG6gAFjDAUrJdf",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_019jay3PHErLJUrhfTw3DKLr",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01MB4EPD5uz1fYJncdJTQnP3",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01E12FiT3hEfKbZXqaFecon1",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "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",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01YKa12Edjo6WGynk7rExAdm",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "INTERCO"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_015pVFQG5yhN1pZRSvePMrxg",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "AMAZON"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_016xzV28EqGUQv8pDnBn16Er",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "AMZN"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Hb1XfgfqwiYvh6Vs61wLPF",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "KESTREL"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01QMrzoTdh5TPaBqTUaUNkfN",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "COURIER"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01XP3j65hiFVSmhxayuYDeFW",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "MONTHLY ACCOUNT FEE"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "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",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01LuUiYZwW2rN9JCLaVoiMB4",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-03-01",
+          "memo": "Courier Express payment, bank date 2026-02-27",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "description": "Courier Express - no bill, vendor default expense"
+            },
+            {
+              "account": "1000",
+              "credit": "45.00",
+              "description": "Bank payment"
+            }
+          ],
+          "bank_line_ids": [
+            30
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01JH6Puu2UEe9LVPoWm2AQjQ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-03",
+          "memo": "Pay bill B-0009 Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "389.25",
+              "description": "Settle B-0009"
+            },
+            {
+              "account": "1000",
+              "credit": "389.25",
+              "description": "Bank payment"
+            }
+          ],
+          "bank_line_ids": [
+            25
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01KfGgUqSQCXNSdefhxAuiBH",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-05",
+          "memo": "GitHub subscription - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6100",
+              "debit": "21.00"
+            },
+            {
+              "account": "1000",
+              "credit": "21.00"
+            }
+          ],
+          "bank_line_ids": [
+            19
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01SNUHFFT65V9KC9SjJh2Tts",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-11",
+          "memo": "Intercompany funding received from Beta Ltd",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00"
+            },
+            {
+              "account": "2200",
+              "credit": "2000.00"
+            }
+          ],
+          "bank_line_ids": [
+            24
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01DGdb9mHU5nopyKSwtjCpF4",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-20",
+          "memo": "Amazon purchase - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "100.00"
+            },
+            {
+              "account": "1000",
+              "credit": "100.00"
+            }
+          ],
+          "bank_line_ids": [
+            28
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01PAc4TfFB4dE8Ed8ReBwgqJ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-22",
+          "memo": "Amazon purchase - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "98.50"
+            },
+            {
+              "account": "1000",
+              "credit": "98.50"
+            }
+          ],
+          "bank_line_ids": [
+            29
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_016eVrDtNzNBxL9SFKhnMMvP",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Receipt INV-0012 Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "1949.57"
+            },
+            {
+              "account": "1100",
+              "credit": "1949.57"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_018qhA1Z4MBndjKtpAH26VyX",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Pay bill B-0005 Office Greens",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "696.40"
+            },
+            {
+              "account": "1000",
+              "credit": "696.40"
+            }
+          ],
+          "bank_line_ids": [
+            18
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01TniQfAnKp7rmkWhoixM7Ug",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-26",
+          "memo": "Partial receipt INV-0013 Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "821.11"
+            },
+            {
+              "account": "1100",
+              "credit": "821.11"
+            }
+          ],
+          "bank_line_ids": [
+            21
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01XHEC5ihXEa54Ba9xT8pyWj",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-27",
+          "memo": "Receipt INV-0007 and INV-0009 Orbital Coffee",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2392.06"
+            },
+            {
+              "account": "1100",
+              "credit": "2392.06"
+            }
+          ],
+          "bank_line_ids": [
+            22
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_014Nbpuab5P4WpzV71Y3DSkg",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-28",
+          "memo": "Stripe payout covering INV-0008 and INV-0011, gross less fees",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "3505.44"
+            },
+            {
+              "account": "6300",
+              "debit": "105.31"
+            },
+            {
+              "account": "1100",
+              "credit": "3610.75"
+            }
+          ],
+          "bank_line_ids": [
+            23
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_017S3g7Ek1kfnjqK1upN2w7i",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-29",
+          "memo": "Receipt INV-0010 Kestrel Studio (duplicate bank line 27 covered)",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "208.51"
+            },
+            {
+              "account": "1100",
+              "credit": "208.51"
+            }
+          ],
+          "bank_line_ids": [
+            26,
+            27
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01FgcLVdwpqdHsHFG6de2t7T",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-30",
+          "memo": "Monthly account fee",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": "12.00"
+            },
+            {
+              "account": "1000",
+              "credit": "12.00"
+            }
+          ],
+          "bank_line_ids": [
+            20
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "All entries validate. Now creating drafts.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Xq91negpkm2UpqW1hMfY3p",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-03-01",
+          "memo": "Courier Express payment, bank date 2026-02-27",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "description": "Courier Express - no bill, vendor default expense"
+            },
+            {
+              "account": "1000",
+              "credit": "45.00",
+              "description": "Bank payment"
+            }
+          ],
+          "bank_line_ids": [
+            30
+          ],
+          "idempotency_key": "courier-30"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_011gr1xz5krp1P4y8vJVWuNB",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-03",
+          "memo": "Pay bill B-0009 Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "389.25",
+              "description": "Settle B-0009"
+            },
+            {
+              "account": "1000",
+              "credit": "389.25",
+              "description": "Bank payment"
+            }
+          ],
+          "bank_line_ids": [
+            25
+          ],
+          "idempotency_key": "cloudwave-25"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_013LpffYdVqXuLjmESsUHCA7",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-05",
+          "memo": "GitHub subscription - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6100",
+              "debit": "21.00"
+            },
+            {
+              "account": "1000",
+              "credit": "21.00"
+            }
+          ],
+          "bank_line_ids": [
+            19
+          ],
+          "idempotency_key": "github-19"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_015rqFrVd9kGrAdYteoXnUYS",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-11",
+          "memo": "Intercompany funding received from Beta Ltd",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00"
+            },
+            {
+              "account": "2200",
+              "credit": "2000.00"
+            }
+          ],
+          "bank_line_ids": [
+            24
+          ],
+          "idempotency_key": "interco-24"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01YW6W2EjNxo8qyLRmSZG7bn",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-20",
+          "memo": "Amazon purchase - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "100.00"
+            },
+            {
+              "account": "1000",
+              "credit": "100.00"
+            }
+          ],
+          "bank_line_ids": [
+            28
+          ],
+          "idempotency_key": "amazon-28"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01EponenBz1mdiCmgqS2TdxL",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-22",
+          "memo": "Amazon purchase - no bill, vendor default expense",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "98.50"
+            },
+            {
+              "account": "1000",
+              "credit": "98.50"
+            }
+          ],
+          "bank_line_ids": [
+            29
+          ],
+          "idempotency_key": "amazon-29"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_0148px2jESRXhnQRwLpmVTKT",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Receipt INV-0012 Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "1949.57"
+            },
+            {
+              "account": "1100",
+              "credit": "1949.57"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "northwind-17"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01FZppcYruVG6pirmRxqZ3ev",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Pay bill B-0005 Office Greens",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "696.40"
+            },
+            {
+              "account": "1000",
+              "credit": "696.40"
+            }
+          ],
+          "bank_line_ids": [
+            18
+          ],
+          "idempotency_key": "officegreens-18"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_012YbgirU6BEwgNrqkAVbzof",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-26",
+          "memo": "Partial receipt INV-0013 Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "821.11"
+            },
+            {
+              "account": "1100",
+              "credit": "821.11"
+            }
+          ],
+          "bank_line_ids": [
+            21
+          ],
+          "idempotency_key": "harbour-21"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Nfzcg6KNVp46fsX4mptoWA",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-27",
+          "memo": "Receipt INV-0007 and INV-0009 Orbital Coffee",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2392.06"
+            },
+            {
+              "account": "1100",
+              "credit": "2392.06"
+            }
+          ],
+          "bank_line_ids": [
+            22
+          ],
+          "idempotency_key": "orbital-22"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01X8pkS9bAW7eqvaM8mewrSv",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-28",
+          "memo": "Stripe payout covering INV-0008 and INV-0011, gross less fees",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "3505.44"
+            },
+            {
+              "account": "6300",
+              "debit": "105.31"
+            },
+            {
+              "account": "1100",
+              "credit": "3610.75"
+            }
+          ],
+          "bank_line_ids": [
+            23
+          ],
+          "idempotency_key": "stripe-23"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_0188gej3ArzmxQxXpYssX8g3",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-29",
+          "memo": "Receipt INV-0010 Kestrel Studio (duplicate bank line 27 covered)",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "208.51"
+            },
+            {
+              "account": "1100",
+              "credit": "208.51"
+            }
+          ],
+          "bank_line_ids": [
+            26,
+            27
+          ],
+          "idempotency_key": "kestrel-26-27"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01WYKypnH7NXUL15h2pp3ZrN",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-30",
+          "memo": "Monthly account fee",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": "12.00"
+            },
+            {
+              "account": "1000",
+              "credit": "12.00"
+            }
+          ],
+          "bank_line_ids": [
+            20
+          ],
+          "idempotency_key": "fee-20"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "All drafts created. Now posting each with reasoning.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01MWPeWTLCwgXALwjRcjPCrC",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 54,
+          "reasoning": {
+            "evidence": [
+              "bank_line 30 (2026-02-27, -45.00, Courier Express)",
+              "vendor list: Courier Express default expense account 6000",
+              "open_bills: no bill from Courier Express"
+            ],
+            "rule": "Payment with no matching bill posts to vendor's default expense account; Feb is locked so post on first open period's first day (2026-03-01) with original bank date in memo.",
+            "confidence": 0.9,
+            "reason": "No bill exists for Courier Express, so this is a direct expense payment; period Feb is locked, so posted 2026-03-01 per policy with the true bank date noted in the memo."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Ww7tkURnh1sC2Syygyf5US",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 55,
+          "reasoning": {
+            "evidence": [
+              "bank_line 25 (2026-04-03, -389.25, Cloudwave Hosting)",
+              "open_bills: B-0009 Cloudwave Hosting outstanding 389.25"
+            ],
+            "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+            "confidence": 0.97,
+            "reason": "The payment amount exactly matches the outstanding balance of bill B-0009 from Cloudwave Hosting, so this settles that payable."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01D5CDPjFBm9AyBeyqqDNHGn",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 56,
+          "reasoning": {
+            "evidence": [
+              "bank_line 19 (2026-04-05, -21.00, GitHub)",
+              "vendor list: GitHub default expense account 6100",
+              "open_bills: no bill from GitHub"
+            ],
+            "rule": "Payment with no matching bill posts to vendor's default expense account.",
+            "confidence": 0.9,
+            "reason": "No open bill exists for GitHub, so this recurring subscription charge is booked directly as a software subscription expense per the vendor's default account."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01XSy2Bxd4UR6b4MB27gWKq5",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 57,
+          "reasoning": {
+            "evidence": [
+              "bank_line 24 (2026-04-11, +2000.00, Beta Ltd, INTERCO FUNDING)",
+              "chart of accounts: 2200 Due to Beta Ltd (intercompany)"
+            ],
+            "rule": "Intercompany funding received increases the intercompany liability account.",
+            "confidence": 0.75,
+            "reason": "Money received from Beta Ltd referenced as intercompany funding is recorded against the dedicated intercompany liability account, increasing what is due to Beta Ltd, since there is no invoice or sale behind it."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Nc2kYCTjSNSvBVKi327xdf",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 58,
+          "reasoning": {
+            "evidence": [
+              "bank_line 28 (2026-04-20, -100.00, Amazon, pending)",
+              "vendor list: Amazon default expense account 6000",
+              "open_bills: no bill from Amazon"
+            ],
+            "rule": "Payment with no matching bill posts to vendor's default expense account, regardless of pending clearance status since the transaction occurred.",
+            "confidence": 0.8,
+            "reason": "No bill exists for this Amazon charge, so it is booked as an office expense per the vendor's default account; pending status does not change that the purchase happened."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01TrUwdiUVWdGBajHGzySRFK",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 59,
+          "reasoning": {
+            "evidence": [
+              "bank_line 29 (2026-04-22, -98.50, Amazon.co.uk)",
+              "vendor list: Amazon default expense account 6000",
+              "open_bills: no bill from Amazon"
+            ],
+            "rule": "Payment with no matching bill posts to vendor's default expense account.",
+            "confidence": 0.85,
+            "reason": "No open bill matches this Amazon charge, a separate purchase from the other Amazon line on a different date/amount, so it is booked as an office expense."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Bt2yurKRjosR7iquNpxPtd",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 60,
+          "reasoning": {
+            "evidence": [
+              "bank_line 17 (2026-04-25, +1949.57, Northwind Traders, ref INV-0012)",
+              "open_invoices: INV-0012 outstanding 1949.57"
+            ],
+            "rule": "Customer receipt matching invoice amount settles accounts receivable.",
+            "confidence": 0.98,
+            "reason": "The receipt exactly matches the outstanding balance of INV-0012, so it settles that receivable."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Et2ggmoq7GZs7wR1dYAKe3",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 61,
+          "reasoning": {
+            "evidence": [
+              "bank_line 18 (2026-04-25, -696.40, Office Greens, ref B-0005)",
+              "open_bills: B-0005 outstanding 696.40"
+            ],
+            "rule": "Payment amount exactly matches an open bill; settle accounts payable.",
+            "confidence": 0.98,
+            "reason": "The payment exactly matches the outstanding balance of bill B-0005 from Office Greens, so it settles that payable."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01GnARvH11HxcbfZDY3ZGPdU",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 62,
+          "reasoning": {
+            "evidence": [
+              "bank_line 21 (2026-04-26, +821.11, Harbour Books, ref INV-0013 PART)",
+              "open_invoices: INV-0013 outstanding 2052.77"
+            ],
+            "rule": "Partial customer receipt reduces the specific invoice's receivable balance.",
+            "confidence": 0.9,
+            "reason": "The reference explicitly marks this as a partial payment toward INV-0013, so it is recorded as a partial settlement of that receivable, leaving the remainder open."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01ToCRsgQ2mYEJBtfbPZn7aZ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 63,
+          "reasoning": {
+            "evidence": [
+              "bank_line 22 (2026-04-27, +2392.06, Orbital Coffee, ref INV-0007 INV-0009)",
+              "open_invoices: INV-0007 outstanding 1974.08, INV-0009 outstanding 417.98, sum 2392.06"
+            ],
+            "rule": "Combined customer receipt matching sum of two named invoices settles both receivables.",
+            "confidence": 0.97,
+            "reason": "The receipt amount exactly equals the combined outstanding balance of INV-0007 and INV-0009, both referenced explicitly, so it settles both."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_0179SzBjphiKN3CMr3ptnGae",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 64,
+          "reasoning": {
+            "evidence": [
+              "bank_line 23 (2026-04-28, +3505.44, Stripe payout)",
+              "payout_reports id 1: gross 3610.75, fees 105.31, net 3505.44, invoices INV-0008 and INV-0011",
+              "open_invoices: INV-0008 outstanding 2041.47, INV-0011 outstanding 1569.28, sum 3610.75"
+            ],
+            "rule": "Card processor payout is recorded gross with fees expensed, matched to the settled invoices per the payout report.",
+            "confidence": 0.97,
+            "reason": "The payout report confirms this net deposit corresponds to gross collections of 3610.75 for INV-0008 and INV-0011 less 105.31 in processing fees, matching outstanding invoice balances exactly."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Sf9JcReQzeNK5mB8uG39iP",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 65,
+          "reasoning": {
+            "evidence": [
+              "bank_line 26 (2026-04-29, +208.51, Kestrel Studio, ref INV-0010)",
+              "bank_line 27 (2026-04-29, +208.51, Kestrel Studio, ref PAYMENT INV0010)",
+              "open_invoices: INV-0010 outstanding 208.51"
+            ],
+            "rule": "Duplicate bank lines for the same invoice payment are recorded once, with both lines linked to the single entry.",
+            "confidence": 0.85,
+            "reason": "Two bank lines on the same day, same amount, same customer and invoice reference clearly represent a single duplicated bank feed entry for INV-0010's exact outstanding balance; only one receipt entry is warranted, covering both lines."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_0129BkfUreDhLxKwDS3Hxr7Y",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 66,
+          "reasoning": {
+            "evidence": [
+              "bank_line 20 (2026-04-30, -12.00, MONTHLY ACCOUNT FEE)",
+              "history_for MONTHLY ACCOUNT FEE: prior entries 34, 35, 36 all booked -12.00 to account 6200 Bank charges"
+            ],
+            "rule": "Recurring bank fee follows established historical booking pattern to Bank charges.",
+            "confidence": 0.97,
+            "reason": "This month's account fee matches the exact recurring pattern of prior months, consistently posted to Bank charges account 6200."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "All 13 unrecorded bank lines have been addressed and posted successfully.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0188vZhHJvQMUSoRvYWZV1yk",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Processed all 14 unrecorded bank lines (13 postings, one duplicate pair covered by one entry):\n\n1. Courier Express -45.00 (2026-02-27, locked period) \u2192 posted 2026-03-01 with bank date in memo; expensed to Office expenses (6000), no matching bill.\n2. Cloudwave Hosting -389.25 \u2192 settled bill B-0009 (AP).\n3. GitHub -21.00 \u2192 expensed to Software subscriptions (6100), no bill.\n4. Beta Ltd +2000.00 \"INTERCO FUNDING\" \u2192 credited intercompany liability account 2200.\n5. Amazon -100.00 (pending) \u2192 expensed to Office expenses (6000), no bill.\n6. Amazon.co.uk -98.50 \u2192 expensed to Office expenses (6000), no bill.\n7. Northwind Traders +1949.57 \u2192 settled INV-0012 in full.\n8. Office Greens -696.40 \u2192 settled bill B-0005 in full.\n9. Harbour Books +821.11 \"INV-0013 PART\" \u2192 partial settlement of INV-0013.\n10. Orbital Coffee +2392.06 \u2192 settled INV-0007 and INV-0009 in full (sum matches exactly).\n11. Stripe payout +3505.44 \u2192 recorded per payout report: gross 3610.75 settling INV-0008 and INV-0011, less 105.31 processing fees.\n12. Kestrel Studio +208.51 (bank lines 26 and 27, duplicate same-day/same-amount/same-invoice) \u2192 single receipt entry settling INV-0010, both bank lines linked to it.\n13. Monthly account fee -12.00 \u2192 booked to Bank charges (6200), consistent with prior months' history.\n\nNo invoice or bill was left unaddressed except INV-0014 (Northwind, no bank evidence) and Staples bills B-0006/B-0008, which per policy are left unpaid with no supporting evidence. Nothing was posted to suspense or miscellaneous accounts."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

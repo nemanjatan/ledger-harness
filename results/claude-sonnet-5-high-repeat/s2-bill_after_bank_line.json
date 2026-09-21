@@ -1,0 +1,661 @@
+{
+  "task": "s2-bill_after_bank_line",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 27.495,
+  "error": null,
+  "score": {
+    "task_id": "s2-bill_after_bank_line",
+    "results": [
+      {
+        "label": "bill_after_bank_line",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-03 1000": "-187.86",
+          "2026-04-03 2000": "187.86"
+        },
+        "posted": {
+          "2026-04-03 1000": "-187.86",
+          "2026-04-03 2000": "187.86"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 6,
+    "input_tokens": 11,
+    "output_tokens": 2188,
+    "cache_creation_input_tokens": 4306,
+    "cache_read_input_tokens": 33556,
+    "cost_usd": "0.0394"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 42,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 17: -187.86 on 2026-04-03, counterparty Cloudwave Hosting",
+          "open_bills B-0009: Cloudwave Hosting, outstanding 187.86, due 2026-04-24",
+          "history_for CLOUDWAVE: prior payments to Cloudwave Hosting were always recorded as bill settlements (debit 2000, credit 1000)"
+        ],
+        "rule": "A payment matching an open vendor bill amount settles accounts payable (debit 2000, credit 1000), consistent with prior Cloudwave Hosting payment history.",
+        "confidence": 0.8,
+        "reason": "The outgoing bank line's amount exactly matches the sole open Cloudwave Hosting bill (B-0009, $187.86), and history shows Cloudwave payments are consistently recorded as bill settlements rather than ad hoc expenses; despite the bill's recorded receipt date being after the payment date, this is the only reasonable match and no other Cloudwave bill exists for this period."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-03",
+          "amount": "-187.86",
+          "reference": "CLOUDWAVE HOSTING",
+          "counterparty": "Cloudwave Hosting",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 9,
+          "number": "B-0009",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-10",
+          "due_on": "2026-04-24",
+          "amount": "187.86",
+          "outstanding": "187.86"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "CLOUDWAVE",
+        "limit": 5
+      },
+      "result": [
+        {
+          "bank_line_id": 9,
+          "booked_on": "2026-02-21",
+          "amount": "-251.26",
+          "reference": "CLOUDWAVE HOSTING B-0003",
+          "counterparty": "Cloudwave Hosting",
+          "entry_id": 32,
+          "posting_date": "2026-02-21",
+          "memo": "Payment B-0003 to Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": 251.26,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 251.26
+            }
+          ]
+        },
+        {
+          "bank_line_id": 8,
+          "booked_on": "2026-02-03",
+          "amount": "-503.71",
+          "reference": "CLOUDWAVE HOSTING B-0002",
+          "counterparty": "Cloudwave Hosting",
+          "entry_id": 31,
+          "posting_date": "2026-02-03",
+          "memo": "Payment B-0002 to Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": 503.71,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 503.71
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-03",
+        "memo": "Payment B-0009 to Cloudwave Hosting",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "187.86",
+            "description": "Payment of bill B-0009 to Cloudwave Hosting"
+          },
+          {
+            "account": "1000",
+            "credit": "187.86",
+            "description": "Bank payment to Cloudwave Hosting"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-03",
+        "memo": "Payment B-0009 to Cloudwave Hosting",
+        "lines": [
+          {
+            "account": "2000",
+            "debit": "187.86",
+            "description": "Payment of bill B-0009 to Cloudwave Hosting"
+          },
+          {
+            "account": "1000",
+            "credit": "187.86",
+            "description": "Bank payment to Cloudwave Hosting"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "cloudwave-b0009-pay-20260403"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 42
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 42,
+        "reasoning": {
+          "evidence": [
+            "bank_line 17: -187.86 on 2026-04-03, counterparty Cloudwave Hosting",
+            "open_bills B-0009: Cloudwave Hosting, outstanding 187.86, due 2026-04-24",
+            "history_for CLOUDWAVE: prior payments to Cloudwave Hosting were always recorded as bill settlements (debit 2000, credit 1000)"
+          ],
+          "rule": "A payment matching an open vendor bill amount settles accounts payable (debit 2000, credit 1000), consistent with prior Cloudwave Hosting payment history.",
+          "confidence": 0.8,
+          "reason": "The outgoing bank line's amount exactly matches the sole open Cloudwave Hosting bill (B-0009, $187.86), and history shows Cloudwave payments are consistently recorded as bill settlements rather than ad hoc expenses; despite the bill's recorded receipt date being after the payment date, this is the only reasonable match and no other Cloudwave bill exists for this period."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 42,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Reviewed the one unrecorded bank line (id 17, -187.86, Cloudwave Hosting, 2026-04-03). It matches the outstanding balance of open bill B-0009 from Cloudwave Hosting exactly, and prior history shows Cloudwave payments are booked as bill settlements (debit AP 2000 / credit Cash 1000). Posted entry 42 for this payment, linked to bank line 17. No other unrecorded bank lines remain; all other open invoices/bills have no corresponding bank activity and are left untouched per the \"unpaid with no evidence\" rule.",
+  "transcript": [
+    [
+      {
+        "signature": "EosCCpABCBEYAipAV4Ar1jIp/NNIqw6mQN64B6mhlRJ7rQ7YCvQG1mAUAwxmwJ8xoTb3kAJE6pqx6TsEuTGSUKxW+9nk6pyeKEIJjzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAbv8s9UGEgwUsvrE7+uk51aNYRAaDFAM3y71G+y1eIpaGCIwwrHd/bnzPz4gXqaITlumnkunUWzV1njzuwbw8wdvaKCVZQm68EENeveuv93n0ytPKihui2lCLOqGt/hj0CvTVf7ICek/9lHFBGh+YgvKa+VYQtmefBSHrDsUGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01VhE9GYibWFkthneqU5Wq3a",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01SPk3cJfTyiCLEEGAyzoqrL",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01VqQ3N1MTPbJUjwvVTeNKci",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Wim3gZ7DuVzEke5PqM2Jg8",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01TRfPLdVnVKktYzYe1wtmer",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01ST5EH6eEXzhakzgKjhSY2T",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01F5DCseqpUD4ZcXQNbfcP9G",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "EvYECpABCBEYAipAE13R6ZBbIGSzVX0LsR7abUOzWAFmgYwPCqNl+Sc9jdMUKEu5zLJnv5xk1dCKyvUiFPjU7YHapFn/4StURqpzjzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAb/8s9UGEgyYC/U+rB3xhBfLFOwaDLRcNv2BKbmk/uzd2CIw+c6FdAaBCF0QQEV6N5qKnrREiaj6t2qT9K70YnL8I9s0a+PUeQPpJRlgQm+NwEJsKpIDSAkup40n9YlvsxApwFZdZgHLz6kfuE39RZuxLkhINCmKWXZqxnbopPdoPV0qNhSKCtLcSBoZ32OGIOmP0SXcNjrFui0lbpCLzGwaX0n81YnkH+h/0KgK45LwzOrcoowQGB5F9bM9LONaJrN9sz0BS+WY2Waux51AeL5ZoVNHnRp+brrVUQdzPUFQz3bZVB9jcojXA84gpQXO+RZDgIYRq6lk+DGRlbugmMYxUaxX159ItD1rNJXnITqzyik11P6jhpSKgwb0z2ioiv7Wr4ZE4cmys6NleObMsXpaXl0RPgM2AN+kkKd7Mwc8XSqtyBZDUdhyNV49ObQQ81ae9Z1hUunlOdVeTZzfTyOsFsHsFGMFrZnqWo93yqleQ6RuYQXgj6B/6dog2JCdEf5hxVNnNxOfOu7t3rp7qMMoPOw1pxE+AKszoy0oBfW1OQ1ZOxniP1+ywW0Am10g0DoLOyFLuQVYXSxCZKE2pD3O7qo2ZkEnGtUF8UCEIMYrOogh6ouho0kNeCp9Xio7KKMS5WnL1OPlGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01HpzeoTUmkHfPW2UhoVxGVV",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "CLOUDWAVE"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "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",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01NF6KLpwMDSLTr4sTsWv7va",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-03",
+          "memo": "Payment B-0009 to Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "187.86",
+              "description": "Payment of bill B-0009 to Cloudwave Hosting"
+            },
+            {
+              "account": "1000",
+              "credit": "187.86",
+              "description": "Bank payment to Cloudwave Hosting"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_013B7sfvEBtPwFU6szcdTRSy",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-03",
+          "memo": "Payment B-0009 to Cloudwave Hosting",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "187.86",
+              "description": "Payment of bill B-0009 to Cloudwave Hosting"
+            },
+            {
+              "account": "1000",
+              "credit": "187.86",
+              "description": "Bank payment to Cloudwave Hosting"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "cloudwave-b0009-pay-20260403"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01M3ppxZ9D3FRykBBgG1Ac5Q",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 42,
+          "reasoning": {
+            "evidence": [
+              "bank_line 17: -187.86 on 2026-04-03, counterparty Cloudwave Hosting",
+              "open_bills B-0009: Cloudwave Hosting, outstanding 187.86, due 2026-04-24",
+              "history_for CLOUDWAVE: prior payments to Cloudwave Hosting were always recorded as bill settlements (debit 2000, credit 1000)"
+            ],
+            "rule": "A payment matching an open vendor bill amount settles accounts payable (debit 2000, credit 1000), consistent with prior Cloudwave Hosting payment history.",
+            "confidence": 0.8,
+            "reason": "The outgoing bank line's amount exactly matches the sole open Cloudwave Hosting bill (B-0009, $187.86), and history shows Cloudwave payments are consistently recorded as bill settlements rather than ad hoc expenses; despite the bill's recorded receipt date being after the payment date, this is the only reasonable match and no other Cloudwave bill exists for this period."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "The single unrecorded bank line (Cloudwave Hosting, -187.86 on 2026-04-03) has been recorded as a payment against the open bill B-0009, which matches the amount exactly and is consistent with how prior Cloudwave Hosting payments were booked.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01GNGGn2Hb3wTuLxVPvZo5y2",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Reviewed the one unrecorded bank line (id 17, -187.86, Cloudwave Hosting, 2026-04-03). It matches the outstanding balance of open bill B-0009 from Cloudwave Hosting exactly, and prior history shows Cloudwave payments are booked as bill settlements (debit AP 2000 / credit Cash 1000). Posted entry 42 for this payment, linked to bank line 17. No other unrecorded bank lines remain; all other open invoices/bills have no corresponding bank activity and are left untouched per the \"unpaid with no evidence\" rule."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

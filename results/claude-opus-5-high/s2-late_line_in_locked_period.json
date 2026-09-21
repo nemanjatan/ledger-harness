@@ -1,0 +1,774 @@
+{
+  "task": "s2-late_line_in_locked_period",
+  "agent": "claude-opus-5-high",
+  "seconds": 39.855,
+  "error": null,
+  "score": {
+    "task_id": "s2-late_line_in_locked_period",
+    "results": [
+      {
+        "label": "late_line_in_locked_period",
+        "outcome": "correct",
+        "expected": {
+          "2026-03-01 1000": "-45.00",
+          "2026-03-01 6000": "45.00"
+        },
+        "posted": {
+          "2026-03-01 1000": "-45.00",
+          "2026-03-01 6000": "45.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 9,
+    "input_tokens": 18,
+    "output_tokens": 2574,
+    "cache_creation_input_tokens": 4683,
+    "cache_read_input_tokens": 53049,
+    "cost_usd": "0.1202"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 41,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank line 17: 2026-02-27, -45.00, COURIER EXPRESS, cleared",
+          "open_bills: only Courier Express bill is B-0007 received 2026-04-18 for 503.89 - later date and different amount, so not this payment",
+          "list_vendors: Courier Express default expense account 6000 Office expenses",
+          "history_for 'Courier Express' returned no prior bookings",
+          "periods: Jan and Feb locked, Mar 2026 is the earliest open period"
+        ],
+        "rule": "Payment with no matching bill is an expense on the vendor's default account; locked bank date posts on first day of earliest open period",
+        "confidence": 0.88,
+        "reason": "A 45.00 outgoing payment to Courier Express has no corresponding purchase bill (the only open Courier bill post-dates it and differs in amount), so it is booked directly as office expense per the vendor default. The 2026-02-27 bank date falls in the locked February period, so it is posted 2026-03-01 with the bank date noted in the memo."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-02-27",
+          "amount": "-45.00",
+          "reference": "COURIER EXPRESS",
+          "counterparty": "Courier Express",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "COURIER",
+        "limit": 20
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "Courier Express",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "STAPLES",
+        "limit": 5
+      },
+      "result": [
+        {
+          "bank_line_id": 10,
+          "booked_on": "2026-03-08",
+          "amount": "-644.77",
+          "reference": "STAPLES B-0004",
+          "counterparty": "Staples",
+          "entry_id": 33,
+          "posting_date": "2026-03-08",
+          "memo": "Payment B-0004 to Staples",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": 644.77,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 644.77
+            }
+          ]
+        },
+        {
+          "bank_line_id": 7,
+          "booked_on": "2026-01-23",
+          "amount": "-728.60",
+          "reference": "STAPLES B-0001",
+          "counterparty": "Staples",
+          "entry_id": 30,
+          "posting_date": "2026-01-23",
+          "memo": "Payment B-0001 to Staples",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": 728.6,
+              "credit": 0.0
+            },
+            {
+              "account": "1000",
+              "debit": 0.0,
+              "credit": 728.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "AMAZON",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-03-01",
+        "memo": "Courier Express delivery charge, bank date 2026-02-27 (February locked; posted first day of earliest open period)",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "45.00",
+            "description": "Courier Express - no bill, vendor default expense account"
+          },
+          {
+            "account": "1000",
+            "credit": "45.00",
+            "description": "Bank payment 2026-02-27"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "bl17-courier-express-45"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-03-01",
+        "memo": "Courier Express delivery charge, bank date 2026-02-27 (February locked; posted first day of earliest open period)",
+        "lines": [
+          {
+            "account": "6000",
+            "debit": "45.00",
+            "description": "Courier Express - no bill, vendor default expense account"
+          },
+          {
+            "account": "1000",
+            "credit": "45.00",
+            "description": "Bank payment 2026-02-27"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "bl17-courier-express-45"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 41,
+        "reasoning": {
+          "evidence": [
+            "bank line 17: 2026-02-27, -45.00, COURIER EXPRESS, cleared",
+            "open_bills: only Courier Express bill is B-0007 received 2026-04-18 for 503.89 - later date and different amount, so not this payment",
+            "list_vendors: Courier Express default expense account 6000 Office expenses",
+            "history_for 'Courier Express' returned no prior bookings; periods: Jan and Feb locked, Mar open"
+          ],
+          "rule": "Payment with no matching bill is an expense on the vendor's default account; bank date in a locked period posts on the first day of the earliest open period with the bank date in the memo",
+          "confidence": 0.88,
+          "reason": "A 45.00 outgoing payment to Courier Express has no corresponding purchase bill (the only open Courier bill post-dates it and differs in amount), so it is booked directly as office expense per the vendor default. The 2026-02-27 bank date is in the locked February period, so it is posted 2026-03-01 with the bank date recorded in the memo.",
+          "confidence_note": null
+        }
+      },
+      "result": {
+        "ok": false,
+        "error": "invalid_reasoning",
+        "message": "(root): Additional properties are not allowed ('confidence_note' was unexpected)"
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 41,
+        "reasoning": {
+          "evidence": [
+            "bank line 17: 2026-02-27, -45.00, COURIER EXPRESS, cleared",
+            "open_bills: only Courier Express bill is B-0007 received 2026-04-18 for 503.89 - later date and different amount, so not this payment",
+            "list_vendors: Courier Express default expense account 6000 Office expenses",
+            "history_for 'Courier Express' returned no prior bookings",
+            "periods: Jan and Feb locked, Mar 2026 is the earliest open period"
+          ],
+          "rule": "Payment with no matching bill is an expense on the vendor's default account; locked bank date posts on first day of earliest open period",
+          "confidence": 0.88,
+          "reason": "A 45.00 outgoing payment to Courier Express has no corresponding purchase bill (the only open Courier bill post-dates it and differs in amount), so it is booked directly as office expense per the vendor default. The 2026-02-27 bank date falls in the locked February period, so it is posted 2026-03-01 with the bank date noted in the memo."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "One unrecorded bank line existed (id 17: 2026-02-27, -45.00, Courier Express, cleared). No Courier Express bill matched it (B-0007 was received 2026-04-18 for 503.89), so it was booked as an expense on the vendor's default account 6000 Office expenses against Cash at bank, and linked to bank line 17. Because 2026-02-27 sits in the locked February period, it was posted on 2026-03-01 (first day of the earliest open period) with the bank date in the memo (entry 41, posted). No payout reports existed and no other unrecorded lines remained; the open invoices and bills have no bank evidence, so nothing was posted for them. Nothing needed flagging.",
+  "transcript": [
+    [
+      {
+        "text": "I'll start by reading the current state of the ledger.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01WRVuwafLv97ppszwTPF6vu",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01UrMLDWhgxoBasox74rKfd8",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01WanqdUdrTNCHbJg1prvwQo",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_011oUCPtwnSpixiR8x4zhHDg",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01WTbKTTCyuvgFtxvbcsv1o6",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_015qpFDqM7rPEdrjSkxsGZJN",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_0183tzMQ9SbdGZzHSrm5wNkK",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAISiwUKjgEIERgCKkAC+hq554TDvPbD66MFMRye28VW6nWgLeTeh95Sx8rHJsgLTmxA95zh5Hkdk+ISA1u1mWtUAWbz4CG60E2iUvutMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAaTgs9UGEgy0vJLOUZR5s9o5BO8aDLNFTSAR1oXkJ3NN0yIwjUw845/p2USXhCCaEolSl45EhR3WqkR5p3QK3pAW4/mKJqtwoC5H7HS2sJjb6eUKKqkD034xU2jCpMnroxmnMX/Jmug76IsH19Az8DvleL4OfApbjuLHvnNBTzca5S0SRfsKskk98+G4X3wit5bVGShAfgIF6XGxX+k381yglFaBjDcUjm62+oA1H/NGIeNh4RJEFYF97uxmMNMWKLh3virv3d+FVecsVdg1qoydoeSTg8XzAl+gvRY1csEaKS29scBgMcOZD6NSLtHnuYkJrQ+H8xeh1PExcntOU7jHyvBbKGqXjHQInMRN6JflDl77UfSz83dSzBZ3V7Z0m5eflTmD7knw5xeZIyxcN+K5v7BKXuqZssWn3+F3bqtDsGxAtnQt1LPHAqHreIubRXQGOIuKQUdd/ePKbcSth5umoows/WeFG/999HlNxQERRgra8tuqTR30QP1MR+k5d9i7Q1T2bYSvbukxApHJTJkaQezzM2ALakjhqzSRi78nNzkO0a4Rp8NqSShlVpszWW59tp58viHG0bDflZUjJ7Ygs9MJ4XMtBLx+0yHgO3xOOgWJsPUw/dRQAMB1H5ahG9DKFJq/E7e7A/+5SngrCn0/ITy9cc+iE02rrluid00YAQ==",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_018CTm7xAAb7ci6qqqTH6GkA",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "COURIER",
+          "limit": 20
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAIS1gMKjgEIERgCKkDKkuGnxWw3QgYOOuAlrnGA6mWOlCwkLCrt0bMzD/KooKJ1/PESvn/sM0EVWWmttj2MD0J/xMWm23W1Pi+h/Rn6Mg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAafgs9UGEgxbH5D8XGtuFJZI0AgaDNLL0KHweemRtpJyiCIwWhRsGuJCWIMV+8orVGuozjHsmXqPiVbqJlOXXgw4RyStU3N3wFSM4hnLVyC+Q1WDKvQBrEikKj0Hs2W1uSECb4oMdMWvdAnBD5eSeEIDOK01l8pV/UtF0xbll4FRu0PYaNbA8kq6r5C9DEiopVU8+4UBhTODxxD9jWxsoy9caY1Rw9KfQjzdgvQsahgqHs+P3A626J4dFUZgHeLqVIrseR3kkMy0AcyOqePdimKgwd8OOontsy0R7fevpk3Xd9dyiUaucSraM3XfICwfxAbj2dozRNOmH+3fAOQD9PLrlo4qofAG3m+kpwe32emn81SPQHDKj/w0L3zVd1gvKf8SGFywNAmt/KtlQbJzX0Kb66ouso2zs/xqNAG60SLueN0ggxJGC6TmyhgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01SFjDNzvJtpd5Pc9xF9NV94",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "Courier Express"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01RGkJb6mRewYG1B7SRRms6u",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "STAPLES"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAISygUKjgEIERgCKkCtrFYbDt2p2FR/5SY0Hd3dp7KxA1isVL/EU3Hg5lcaCieYqPQXioydpd9QSNUUZg/dHejKCAFTecXf6K0p80yoMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAazgs9UGEgwg/a1A41fjkJhGiKAaDE0aLtzavQzRFpvDeyIwJBoMhrTYfKYgYQQ9AsIBIFImAPV0fAsXbLABIPCEOR6dFONwUmDe8z83XqvadXeSKugDUi66Y0p0eXRsf/IUiAh6hXTFnKL7tVTstdQgRituPRsc4xIQcM8deOd5rIT5IRbGm9FhaKAJkT2WOpMwXOcqA/HlDi1zGN4IGs14gYpYY1kUU80oC65VdPm+wtQD5NLv0NEdMIoouV0HuxHpXzv71DbwDT53etE36sgLgPizMuTOJeDqgEwQXhbFjHhEc2VNHLBuR5ipt9y+ip70NCqkhFQsxjeLMdgUCi0wwpxAN/gY89CDGBu2ZQLaFkCcG2tadptROspkNiSAljwx2Vr8yOFojkj4H1rjjbHIOkx6d+j2aauuWxvooDZXsoZIjLn49dj6AGsrGSvsmqSm6U6GSfZ8lBg+skmnZ+amUH3Q0AtVh7xl1zD2B2Lnoxbof3zyPsAmtcuiBd9DwpDL9II3kLgnGPSfKij1i/QpZLok91tSlm2xrzksd9WABlzGNa1xe/E1mc4oXiCLqEy6Ng1fpEl/iRZTWxkSX8iqrRo7Woxk5q6sc9N2AO4sZp0eReSq1alczIyxOHkvmOjJqTUVJT4+chjgjQcp4RP0kp/v6G+HF925R1WKu+BSn1YOjwkn+W3e0gx8SqMHUgRyxe+PFWW3x9yNl8T09Nd75zMjmbVimEpziqLn/s+0GGg7yKqvFsA0gIuap+0YAQ==",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_013asHjVMgE64FyHBh36ArFJ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "AMAZON"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01Qjyykf9cScog9s6TvPnv44",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-03-01",
+          "memo": "Courier Express delivery charge, bank date 2026-02-27 (February locked; posted first day of earliest open period)",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "description": "Courier Express - no bill, vendor default expense account"
+            },
+            {
+              "account": "1000",
+              "credit": "45.00",
+              "description": "Bank payment 2026-02-27"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "bl17-courier-express-45"
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01FYpfETtrKZNwZCsL5mX7GD",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-03-01",
+          "memo": "Courier Express delivery charge, bank date 2026-02-27 (February locked; posted first day of earliest open period)",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "description": "Courier Express - no bill, vendor default expense account"
+            },
+            {
+              "account": "1000",
+              "credit": "45.00",
+              "description": "Bank payment 2026-02-27"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "bl17-courier-express-45"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01TN3f2FuPxYyugAktQ3iy1U",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 41,
+          "reasoning": {
+            "evidence": [
+              "bank line 17: 2026-02-27, -45.00, COURIER EXPRESS, cleared",
+              "open_bills: only Courier Express bill is B-0007 received 2026-04-18 for 503.89 - later date and different amount, so not this payment",
+              "list_vendors: Courier Express default expense account 6000 Office expenses",
+              "history_for 'Courier Express' returned no prior bookings; periods: Jan and Feb locked, Mar open"
+            ],
+            "rule": "Payment with no matching bill is an expense on the vendor's default account; bank date in a locked period posts on the first day of the earliest open period with the bank date in the memo",
+            "confidence": 0.88,
+            "reason": "A 45.00 outgoing payment to Courier Express has no corresponding purchase bill (the only open Courier bill post-dates it and differs in amount), so it is booked directly as office expense per the vendor default. The 2026-02-27 bank date is in the locked February period, so it is posted 2026-03-01 with the bank date recorded in the memo.",
+            "confidence_note": null
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01RbqXPrUmXPUng3wwKx1Mbx",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 41,
+          "reasoning": {
+            "evidence": [
+              "bank line 17: 2026-02-27, -45.00, COURIER EXPRESS, cleared",
+              "open_bills: only Courier Express bill is B-0007 received 2026-04-18 for 503.89 - later date and different amount, so not this payment",
+              "list_vendors: Courier Express default expense account 6000 Office expenses",
+              "history_for 'Courier Express' returned no prior bookings",
+              "periods: Jan and Feb locked, Mar 2026 is the earliest open period"
+            ],
+            "rule": "Payment with no matching bill is an expense on the vendor's default account; locked bank date posts on first day of earliest open period",
+            "confidence": 0.88,
+            "reason": "A 45.00 outgoing payment to Courier Express has no corresponding purchase bill (the only open Courier bill post-dates it and differs in amount), so it is booked directly as office expense per the vendor default. The 2026-02-27 bank date falls in the locked February period, so it is posted 2026-03-01 with the bank date noted in the memo."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAISjgMKjgEIERgCKkBCdLpkDwAh3w1ZdUbhln104ZFCn+lLufoRp9/u3VeCXBswC28PtJsw/lEuZOf1mGpiOr3wNq+IscAIQsXK/51/Mg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAcLgs9UGEgyLrMNcX535yhsZPwoaDBFP0QiYw4E++bf85yIw719OizAFujDZMoY6jNzeuz3UNsAnRuw4szQWJ3N/vgYxfuj6CzX6LaJZLJFS9lB/KqwBcVqolb8WIFQPZXGxnz36N9vgsMje5PQPLzH5vYwNEmXd5GloFZIW5/2+gakHjZskHZ8ecP7Wn1CGl2hSZ9s4GkWev0NZxReyRMg6rFjXhlgguVfZZ34dgU0zypV6rCOnYn1QvUaKIPc/UQdYfWK+NTZ+raStmZeGKz8xrypoMAjQcMfYWSNyt/wRozbBbKGw2oombQKfQ1G77RN8EOdXgy0HQf0h5rTWCkP0/BgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01UTdkLUcPJZAbvKK59KQPKH",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "One unrecorded bank line existed (id 17: 2026-02-27, -45.00, Courier Express, cleared). No Courier Express bill matched it (B-0007 was received 2026-04-18 for 503.89), so it was booked as an expense on the vendor's default account 6000 Office expenses against Cash at bank, and linked to bank line 17. Because 2026-02-27 sits in the locked February period, it was posted on 2026-03-01 (first day of the earliest open period) with the bank date in the memo (entry 41, posted). No payout reports existed and no other unrecorded lines remained; the open invoices and bills have no bank evidence, so nothing was posted for them. Nothing needed flagging."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

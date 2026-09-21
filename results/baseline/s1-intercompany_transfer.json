@@ -1,0 +1,262 @@
+{
+  "task": "s1-intercompany_transfer",
+  "agent": "baseline",
+  "seconds": 0.006,
+  "error": null,
+  "score": {
+    "task_id": "s1-intercompany_transfer",
+    "results": [
+      {
+        "label": "intercompany_transfer",
+        "outcome": "flagged",
+        "expected": {
+          "2026-04-11 1000": "2000.00",
+          "2026-04-11 2200": "-2000.00"
+        },
+        "posted": {},
+        "drafted": {},
+        "posted_entries": 0,
+        "detail": "nothing posted; the agent left it for a human"
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 0,
+    "correct": 0,
+    "held_correct": 0,
+    "precision": null,
+    "recall": 0.0,
+    "outcomes": {
+      "flagged": 1
+    }
+  },
+  "usage": null,
+  "flags": [
+    {
+      "bank_line_ids": [
+        17
+      ],
+      "reason": "receipt matches no invoice or payout report",
+      "entry_id": null
+    }
+  ],
+  "traces": [],
+  "calls": [
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "208.51",
+          "outstanding": "208.51"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "1974.08",
+          "outstanding": "1974.08"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-10",
+          "due_on": "2026-04-09",
+          "amount": "2041.47",
+          "outstanding": "2041.47"
+        },
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-20",
+          "due_on": "2026-04-19",
+          "amount": "417.98",
+          "outstanding": "417.98"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1949.57",
+          "outstanding": "1949.57"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-15",
+          "due_on": "2026-05-15",
+          "amount": "2052.77",
+          "outstanding": "2052.77"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-18",
+          "due_on": "2026-05-18",
+          "amount": "731.15",
+          "outstanding": "731.15"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-22",
+          "due_on": "2026-05-22",
+          "amount": "1569.28",
+          "outstanding": "1569.28"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-12",
+          "due_on": "2026-03-26",
+          "amount": "696.40",
+          "outstanding": "696.40"
+        },
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "288.83",
+          "outstanding": "288.83"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-11",
+          "due_on": "2026-04-25",
+          "amount": "810.15",
+          "outstanding": "810.15"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Staples",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "555.57",
+          "outstanding": "555.57"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-11",
+          "amount": "2000.00",
+          "reference": "INTERCO FUNDING",
+          "counterparty": "Beta Ltd",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "flag",
+      "args": {
+        "bank_line_ids": [
+          17
+        ],
+        "reason": "receipt matches no invoice or payout report",
+        "entry_id": null
+      },
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "summary": "",
+  "transcript": null
+}

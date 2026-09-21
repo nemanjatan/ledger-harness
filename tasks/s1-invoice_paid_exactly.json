@@ -1,0 +1,34 @@
+{
+  "id": "s1-invoice_paid_exactly",
+  "seed": 1,
+  "labels": [
+    "invoice_paid_exactly"
+  ],
+  "expected": [
+    {
+      "label": "invoice_paid_exactly",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-25",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "1949.57",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "1949.57"
+            }
+          ],
+          "memo": "Payment INV-0012"
+        }
+      ],
+      "note": "A customer pays one invoice in full."
+    }
+  ]
+}

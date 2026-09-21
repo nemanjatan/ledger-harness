@@ -1,0 +1,660 @@
+{
+  "task": "s1-invoice_paid_exactly",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 18.36,
+  "error": null,
+  "score": {
+    "task_id": "s1-invoice_paid_exactly",
+    "results": [
+      {
+        "label": "invoice_paid_exactly",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-25 1000": "1949.57",
+          "2026-04-25 1100": "-1949.57"
+        },
+        "posted": {
+          "2026-04-25 1000": "1949.57",
+          "2026-04-25 1100": "-1949.57"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 5,
+    "input_tokens": 9,
+    "output_tokens": 1330,
+    "cache_creation_input_tokens": 3820,
+    "cache_read_input_tokens": 26318,
+    "cost_usd": "0.0281"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 40,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line_id 17: 2026-04-25, +1949.57, ref INV-0012, Northwind Traders, cleared",
+          "open_invoices: INV-0012 Northwind Traders outstanding 1949.57",
+          "history_for INV-00*: prior customer receipts booked as straight debit 1000 / credit 1100 with no fees"
+        ],
+        "rule": "Customer receipt matching an open invoice settles accounts receivable (debit Cash, credit AR) on the bank line's date.",
+        "confidence": 0.97,
+        "reason": "The bank line amount and reference exactly match the outstanding balance on invoice INV-0012 from Northwind Traders, and prior similar direct bank receipts were recorded the same way with no processing fee since there is no payout report for this line."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-25",
+          "amount": "1949.57",
+          "reference": "INV-0012",
+          "counterparty": "Northwind Traders",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "208.51",
+          "outstanding": "208.51"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "1974.08",
+          "outstanding": "1974.08"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-10",
+          "due_on": "2026-04-09",
+          "amount": "2041.47",
+          "outstanding": "2041.47"
+        },
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-20",
+          "due_on": "2026-04-19",
+          "amount": "417.98",
+          "outstanding": "417.98"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1949.57",
+          "outstanding": "1949.57"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-15",
+          "due_on": "2026-05-15",
+          "amount": "2052.77",
+          "outstanding": "2052.77"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-18",
+          "due_on": "2026-05-18",
+          "amount": "731.15",
+          "outstanding": "731.15"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-22",
+          "due_on": "2026-05-22",
+          "amount": "1569.28",
+          "outstanding": "1569.28"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-12",
+          "due_on": "2026-03-26",
+          "amount": "696.40",
+          "outstanding": "696.40"
+        },
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "288.83",
+          "outstanding": "288.83"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-11",
+          "due_on": "2026-04-25",
+          "amount": "810.15",
+          "outstanding": "810.15"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Staples",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "555.57",
+          "outstanding": "555.57"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "INV-00",
+        "limit": 5
+      },
+      "result": [
+        {
+          "bank_line_id": 6,
+          "booked_on": "2026-03-04",
+          "amount": "1284.47",
+          "reference": "INV-0006",
+          "counterparty": "Northwind Traders",
+          "entry_id": 29,
+          "posting_date": "2026-03-04",
+          "memo": "Payment INV-0006 from Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1284.47,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1284.47
+            }
+          ]
+        },
+        {
+          "bank_line_id": 4,
+          "booked_on": "2026-02-26",
+          "amount": "2217.59",
+          "reference": "INV-0004",
+          "counterparty": "Larkspur Events",
+          "entry_id": 27,
+          "posting_date": "2026-02-26",
+          "memo": "Payment INV-0004 from Larkspur Events",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 2217.59,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 2217.59
+            }
+          ]
+        },
+        {
+          "bank_line_id": 5,
+          "booked_on": "2026-02-22",
+          "amount": "1428.88",
+          "reference": "INV-0005",
+          "counterparty": "Harbour Books",
+          "entry_id": 28,
+          "posting_date": "2026-02-22",
+          "memo": "Payment INV-0005 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1428.88,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1428.88
+            }
+          ]
+        },
+        {
+          "bank_line_id": 1,
+          "booked_on": "2026-02-12",
+          "amount": "2371.49",
+          "reference": "INV-0001",
+          "counterparty": "Harbour Books",
+          "entry_id": 24,
+          "posting_date": "2026-02-12",
+          "memo": "Payment INV-0001 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 2371.49,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 2371.49
+            }
+          ]
+        },
+        {
+          "bank_line_id": 3,
+          "booked_on": "2026-02-05",
+          "amount": "1387.96",
+          "reference": "INV-0003",
+          "counterparty": "Pinecrest Dental",
+          "entry_id": 26,
+          "posting_date": "2026-02-05",
+          "memo": "Payment INV-0003 from Pinecrest Dental",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1387.96,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1387.96
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-25",
+        "memo": "Payment INV-0012 from Northwind Traders",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "1949.57",
+            "description": "Bank receipt"
+          },
+          {
+            "account": "1100",
+            "credit": "1949.57",
+            "description": "Settle INV-0012"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 40,
+        "reasoning": {
+          "evidence": [
+            "bank_line_id 17: 2026-04-25, +1949.57, ref INV-0012, Northwind Traders, cleared",
+            "open_invoices: INV-0012 Northwind Traders outstanding 1949.57",
+            "history_for INV-00*: prior customer receipts booked as straight debit 1000 / credit 1100 with no fees"
+          ],
+          "rule": "Customer receipt matching an open invoice settles accounts receivable (debit Cash, credit AR) on the bank line's date.",
+          "confidence": 0.97,
+          "reason": "The bank line amount and reference exactly match the outstanding balance on invoice INV-0012 from Northwind Traders, and prior similar direct bank receipts were recorded the same way with no processing fee since there is no payout report for this line."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Reviewed the single unrecorded bank line (id 17, 2026-04-25, +1949.57, Northwind Traders, ref INV-0012). It matched exactly the outstanding balance on open invoice INV-0012, and history showed prior direct customer receipts recorded as a straight debit to Cash (1000) / credit to Accounts Receivable (1100) with no processing fee (no payout report applies here). Posted entry 40 on 2026-04-25 for $1,949.57, linked to bank line 17, settling INV-0012. No other bank lines, invoices, or bills required action \u2014 the remaining open invoices/bills have no corresponding bank activity and are left as-is per the rule allowing unpaid invoices with no evidence.",
+  "transcript": [
+    [
+      {
+        "text": "I'll start by gathering the necessary information to understand the current state.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Bqsi62ZzxwA4TyFL3qS6FF",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Sgiua1WbStwLgKW4rHf1cJ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01QSZLWHBGWYpzvyaouU2Hhe",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01S54hV1NrAk28z9pwZgQcPi",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01VzSu3N9kYf4zHHSK4JqvRW",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01JVDswhjrqBHpLsfvL1j5Lm",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01RVbAZMMMu8oVVjcxmXJ2Sy",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "Eo0ECpABCBEYAipAG0OHQuX+O0e3j2ohlpOJUp591XgsRqSw9L7Ixn68LPNVhz7BZel+trpAF/l+iCJhHv0ORONTNUj7fzhZkpk5ajIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAYTls9UGEgz0viM84qW7unvJysUaDEk3gUxPFLpX+dbRWiIwekIBTx1wA3D2ZJV3OnHBpd9uxaaFcDEWlLiZqOAC9EIfIM9ESKHdMLCSVRHzUTaMKqkCYb1nXRz5t2r4Jci3gJ86vTw0heXJaHckT3vlo/x5lAwrJPNO/15NTBvmjNzUkW9AnXYaWUj830egYtbItRWBkxDX/Luv/RE8OTfyMCkgSovjDKzDf0KpnMNzvPvAOTtZ89evIXTCkBLGIFQv2HXSmE1CKwm+es4OrwheFi72MS7PntmB8470iwazWbizLUm7acRYQnL1QekREEPu8yN/ZEub7qSc3LWXMYqwE7WQljUI6LYsW5X3MvTrNe6pKxM+pXK4Ez97iKW6xXZ7QEkO+izy82+VoacuSnviejsLVvmDTsTsJlgQO7CpKUutdy5ljGsTPB6gcH2fcfq4dwbgNal6gCr4kdJtQhxKQNDABJGz7jDmy2syY3h/uGH1h5pCwcPwqGROoQiAGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01QbSYL8GTGxkJuUUyjLvqCF",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "INV-00"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "This confirms the standard pattern: direct bank receipt for an invoice records a debit to Cash and credit to Accounts Receivable, with no processing fee (unlike card payouts, which don't apply here as there's no payout report matching this).\n\nLet me draft this entry.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01PjzExyfbw89CyZF9hASu3g",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-25",
+          "memo": "Payment INV-0012 from Northwind Traders",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "1949.57",
+              "description": "Bank receipt"
+            },
+            {
+              "account": "1100",
+              "credit": "1949.57",
+              "description": "Settle INV-0012"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01WoyK3okDVK8JPLdfPEdvgW",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 40,
+          "reasoning": {
+            "evidence": [
+              "bank_line_id 17: 2026-04-25, +1949.57, ref INV-0012, Northwind Traders, cleared",
+              "open_invoices: INV-0012 Northwind Traders outstanding 1949.57",
+              "history_for INV-00*: prior customer receipts booked as straight debit 1000 / credit 1100 with no fees"
+            ],
+            "rule": "Customer receipt matching an open invoice settles accounts receivable (debit Cash, credit AR) on the bank line's date.",
+            "confidence": 0.97,
+            "reason": "The bank line amount and reference exactly match the outstanding balance on invoice INV-0012 from Northwind Traders, and prior similar direct bank receipts were recorded the same way with no processing fee since there is no payout report for this line."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "This was the only unrecorded bank line, and it has now been recorded, matching exactly to the outstanding balance on INV-0012.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01LMdY2yDgnFFZJRvX8oBexa",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Reviewed the single unrecorded bank line (id 17, 2026-04-25, +1949.57, Northwind Traders, ref INV-0012). It matched exactly the outstanding balance on open invoice INV-0012, and history showed prior direct customer receipts recorded as a straight debit to Cash (1000) / credit to Accounts Receivable (1100) with no processing fee (no payout report applies here). Posted entry 40 on 2026-04-25 for $1,949.57, linked to bank line 17, settling INV-0012. No other bank lines, invoices, or bills required action \u2014 the remaining open invoices/bills have no corresponding bank activity and are left as-is per the rule allowing unpaid invoices with no evidence."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

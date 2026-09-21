@@ -1,0 +1,327 @@
+{
+  "id": "s1-whole-month",
+  "seed": 1,
+  "labels": [
+    "invoice_paid_exactly",
+    "bill_paid_exactly",
+    "direct_expense",
+    "bank_fee",
+    "part_payment",
+    "batch_payment",
+    "fee_net_payout",
+    "intercompany_transfer",
+    "bill_after_bank_line",
+    "duplicate_bank_line",
+    "pending_then_cleared_differently",
+    "late_line_in_locked_period"
+  ],
+  "expected": [
+    {
+      "label": "invoice_paid_exactly",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-25",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "1949.57",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "1949.57"
+            }
+          ],
+          "memo": "Payment INV-0012"
+        }
+      ],
+      "note": "A customer pays one invoice in full."
+    },
+    {
+      "label": "bill_paid_exactly",
+      "bank_line_ids": [
+        18
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-25",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "696.40",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "696.40"
+            }
+          ],
+          "memo": "Payment B-0005"
+        }
+      ],
+      "note": "The company pays one bill in full."
+    },
+    {
+      "label": "direct_expense",
+      "bank_line_ids": [
+        19
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-05",
+          "lines": [
+            {
+              "account": "6100",
+              "debit": "21.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "21.00"
+            }
+          ],
+          "memo": "GitHub subscription"
+        }
+      ],
+      "note": "A card payment to a known vendor with no bill; the vendor has a default account."
+    },
+    {
+      "label": "bank_fee",
+      "bank_line_ids": [
+        20
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-30",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": "12.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "12.00"
+            }
+          ],
+          "memo": "Monthly account fee"
+        }
+      ],
+      "note": "The bank's monthly fee; history shows how it has been booked before."
+    },
+    {
+      "label": "part_payment",
+      "bank_line_ids": [
+        21
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-26",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "821.11",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "821.11"
+            }
+          ],
+          "memo": "Part payment INV-0013"
+        }
+      ],
+      "note": "A customer pays part of an invoice; the rest stays receivable."
+    },
+    {
+      "label": "batch_payment",
+      "bank_line_ids": [
+        22
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-27",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2392.06",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "2392.06"
+            }
+          ],
+          "memo": "Payment INV-0007 and INV-0009"
+        }
+      ],
+      "note": "One receipt settles several invoices."
+    },
+    {
+      "label": "fee_net_payout",
+      "bank_line_ids": [
+        23
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-28",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "3505.44",
+              "credit": "0"
+            },
+            {
+              "account": "6300",
+              "debit": "105.31",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "3610.75"
+            }
+          ],
+          "memo": "Stripe payout for INV-0008 and INV-0011"
+        }
+      ],
+      "note": "A card processor pays out gross collections net of its fees; the payout report says which invoices."
+    },
+    {
+      "label": "intercompany_transfer",
+      "bank_line_ids": [
+        24
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-11",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00",
+              "credit": "0"
+            },
+            {
+              "account": "2200",
+              "debit": "0",
+              "credit": "2000.00"
+            }
+          ],
+          "memo": "Funding from Beta Ltd"
+        }
+      ],
+      "note": "Funding from the sister company is a liability to it, not revenue."
+    },
+    {
+      "label": "bill_after_bank_line",
+      "bank_line_ids": [
+        25
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-03",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "389.25",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "389.25"
+            }
+          ],
+          "memo": "Payment B-0009"
+        }
+      ],
+      "note": "The vendor was paid before its bill was received; the bill is already in payables."
+    },
+    {
+      "label": "duplicate_bank_line",
+      "bank_line_ids": [
+        26,
+        27
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-29",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "208.51",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "208.51"
+            }
+          ],
+          "memo": "Payment INV-0010"
+        }
+      ],
+      "note": "The bank feed delivered one receipt twice with a different reference."
+    },
+    {
+      "label": "pending_then_cleared_differently",
+      "bank_line_ids": [
+        28,
+        29
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-22",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "98.50",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "98.50"
+            }
+          ],
+          "memo": "Amazon office supplies"
+        }
+      ],
+      "note": "A pending card line clears two days later at a different amount."
+    },
+    {
+      "label": "late_line_in_locked_period",
+      "bank_line_ids": [
+        30
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-03-01",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "45.00"
+            }
+          ],
+          "memo": "Courier Express, bank date 2026-02-27"
+        }
+      ],
+      "note": "A line dated in a locked period; it goes into the first open period, never the locked one."
+    }
+  ]
+}

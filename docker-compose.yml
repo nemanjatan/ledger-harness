@@ -1,0 +1,18 @@
+# Throwaway Postgres for the sandbox ledger. Data lives on tmpfs: every run starts clean.
+services:
+  db:
+    image: postgres:16
+    container_name: ledger-harness-db
+    environment:
+      POSTGRES_USER: ledger
+      POSTGRES_PASSWORD: ledger
+      POSTGRES_DB: ledger
+    ports:
+      - "5435:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledger -d ledger"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

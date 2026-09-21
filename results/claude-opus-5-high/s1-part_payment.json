@@ -1,0 +1,682 @@
+{
+  "task": "s1-part_payment",
+  "agent": "claude-opus-5-high",
+  "seconds": 33.158,
+  "error": null,
+  "score": {
+    "task_id": "s1-part_payment",
+    "results": [
+      {
+        "label": "part_payment",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-26 1000": "821.11",
+          "2026-04-26 1100": "-821.11"
+        },
+        "posted": {
+          "2026-04-26 1000": "821.11",
+          "2026-04-26 1100": "-821.11"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 8,
+    "input_tokens": 16,
+    "output_tokens": 2093,
+    "cache_creation_input_tokens": 3937,
+    "cache_read_input_tokens": 43710,
+    "cost_usd": "0.0989"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 41,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank line 17: 2026-04-26, +821.11, ref 'INV-0013 PART', counterparty Harbour Books",
+          "INV-0013 Harbour Books, issued 2026-04-15, amount 2052.77, outstanding 2052.77",
+          "prior entries 24 and 28 booked Harbour Books receipts (INV-0001, INV-0005) as Dr 1000 / Cr 1100",
+          "history_for 'INV-0013' returns nothing, so this receipt is not already recorded"
+        ],
+        "rule": "Customer receipt settles receivables; partial payment credits AR for the amount received only",
+        "confidence": 0.95,
+        "reason": "The money-in line names INV-0013 and Harbour Books and is flagged PART; 821.11 is less than the 2052.77 outstanding, so it is a partial settlement of that invoice. Booked Dr Cash at bank / Cr Accounts receivable, consistent with how earlier Harbour Books receipts were recorded, leaving 1231.66 outstanding on INV-0013."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-26",
+          "amount": "821.11",
+          "reference": "INV-0013 PART",
+          "counterparty": "Harbour Books",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "208.51",
+          "outstanding": "208.51"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-02",
+          "due_on": "2026-04-01",
+          "amount": "1974.08",
+          "outstanding": "1974.08"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-10",
+          "due_on": "2026-04-09",
+          "amount": "2041.47",
+          "outstanding": "2041.47"
+        },
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-20",
+          "due_on": "2026-04-19",
+          "amount": "417.98",
+          "outstanding": "417.98"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1949.57",
+          "outstanding": "1949.57"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-15",
+          "due_on": "2026-05-15",
+          "amount": "2052.77",
+          "outstanding": "2052.77"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-18",
+          "due_on": "2026-05-18",
+          "amount": "731.15",
+          "outstanding": "731.15"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-22",
+          "due_on": "2026-05-22",
+          "amount": "1569.28",
+          "outstanding": "1569.28"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-12",
+          "due_on": "2026-03-26",
+          "amount": "696.40",
+          "outstanding": "696.40"
+        },
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "288.83",
+          "outstanding": "288.83"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Cloudwave Hosting",
+          "received_on": "2026-04-11",
+          "due_on": "2026-04-25",
+          "amount": "810.15",
+          "outstanding": "810.15"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Staples",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "555.57",
+          "outstanding": "555.57"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "Harbour Books",
+        "limit": 5
+      },
+      "result": [
+        {
+          "bank_line_id": 5,
+          "booked_on": "2026-02-22",
+          "amount": "1428.88",
+          "reference": "INV-0005",
+          "counterparty": "Harbour Books",
+          "entry_id": 28,
+          "posting_date": "2026-02-22",
+          "memo": "Payment INV-0005 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 1428.88,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 1428.88
+            }
+          ]
+        },
+        {
+          "bank_line_id": 1,
+          "booked_on": "2026-02-12",
+          "amount": "2371.49",
+          "reference": "INV-0001",
+          "counterparty": "Harbour Books",
+          "entry_id": 24,
+          "posting_date": "2026-02-12",
+          "memo": "Payment INV-0001 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": 2371.49,
+              "credit": 0.0
+            },
+            {
+              "account": "1100",
+              "debit": 0.0,
+              "credit": 2371.49
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "INV-0013",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "PART",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-26",
+        "memo": "Partial payment INV-0013 from Harbour Books",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "821.11",
+            "description": "Receipt from Harbour Books"
+          },
+          {
+            "account": "1100",
+            "credit": "821.11",
+            "description": "Part settlement of INV-0013"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "bl17-inv0013-part"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-26",
+        "memo": "Partial payment INV-0013 from Harbour Books",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "821.11",
+            "description": "Receipt from Harbour Books"
+          },
+          {
+            "account": "1100",
+            "credit": "821.11",
+            "description": "Part settlement of INV-0013"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "bl17-inv0013-part"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 41,
+        "reasoning": {
+          "evidence": [
+            "bank line 17: 2026-04-26, +821.11, ref 'INV-0013 PART', counterparty Harbour Books",
+            "INV-0013 Harbour Books, issued 2026-04-15, amount 2052.77, outstanding 2052.77",
+            "prior entries 24 and 28 booked Harbour Books receipts (INV-0001, INV-0005) as Dr 1000 / Cr 1100",
+            "history_for 'INV-0013' returns nothing, so this receipt is not already recorded"
+          ],
+          "rule": "Customer receipt settles receivables; partial payment credits AR for the amount received only",
+          "confidence": 0.95,
+          "reason": "The money-in line names INV-0013 and Harbour Books and is flagged PART; 821.11 is less than the 2052.77 outstanding, so it is a partial settlement of that invoice. Booked Dr Cash at bank / Cr Accounts receivable, consistent with how earlier Harbour Books receipts were recorded, leaving 1231.66 outstanding on INV-0013."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41,
+        "status": "posted"
+      }
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": []
+    }
+  ],
+  "summary": "One unrecorded bank line existed (id 17, 2026-04-26, +821.11, \"INV-0013 PART\", Harbour Books). Matched it to open invoice INV-0013 (Harbour Books, 2052.77 outstanding) and to prior Harbour Books receipts (entries 24, 28) booked as Dr 1000 / Cr 1100. Posted entry 41 on the bank line's date (2026-04-26, an open period): Dr Cash at bank 821.11 / Cr Accounts receivable 821.11, linked to bank line 17. INV-0013 remains 1231.66 outstanding.\n\nNothing else was recorded: no payout reports exist, and the remaining open invoices (INV-0007 to INV-0012, INV-0014) and open bills (B-0005 to B-0008) have no corresponding bank movement, so no entry is supportable for them. No suspense or miscellaneous accounts used; no lines needed flagging.",
+  "transcript": [
+    [
+      {
+        "text": "I'll start by reading the current state of the ledger.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01YDCAT9xPqXWbegWybo28n3",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01RpeMPSuKgxAP4TLUPDe2um",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_013J91zD3fo6Ys7nWjG42YXe",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAIS1QIKjgEIERgCKkB9a7av8EDHvwddmMKxqgV3cWaV0bqoK+dcsAi/I8aaZnn1wAnU3vtgkq33+uKUx96WGE+244tRES5aCSLJ+wpWMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAZTcs9UGEgy6ZMSRBCZAwfC2SUAaDCaSszR9z0v73YdC2CIwa7wbxeayPoxlYry8Dua+H/9vbBZNTbQfOPlsKORNPqo88XZu43GEQqOF/sMshVEVKnRJAyvVuL9U2BCZb00Ai2v51atH0D4T1f93+fBIWVVUFcqC+LShLcCM/CSIfWUkpL054HqATSawuCz9VKUwt6x11H0n3sDQ0kBZO3enVqsu9nzRtYDaQQtu8Ci/IDUx+GntfCht+K7zjuAKks2FvDezPj/MKxgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "text": "Only one unrecorded line. Let me gather the supporting evidence.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VfiZfL12GQib6u2h4jiZzM",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01QKh6otTsiY5rZDaFgfQ6FJ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01K3Aqj1R4z1wyiJfYWsN2dv",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_014b4db65aHBasddapXf3j3s",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "Harbour Books"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAISmgQKjgEIERgCKkBzlqGdEYjW0fSMtGxoAhZ/shIbq5UhLLMWOY39xSWMTgjAEE2+6mBuy6W1nDJ/RDelj/hMJXaJOj3807aC1VanMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAZncs9UGEgzda7kGRfb9RlpLyYQaDCZwtt3BQoRXXvMd6CIwtHQBHloHzN2diQ5tgURF1ERszRljaqt6kxgJiZQUNCR5Jg0S2cR8RaY2S6VXsbgcKrgCvI1oyOIP7Chn3RInFFyhyCkZl4bP/w7t+BkdWFUVGCtizffWcfJo0DwQMxDvzUjez9vWgDid/xn3O2ng299gkkoqKBPLApuv+bNOWT/Dedokqqtw9BpuHcuOzZz9XMSVrygntPkoz9Oq0NK86ZDSTw0PiruhfPLv5domRwJ7ROuT7LrUV/mwQFW/z6dr4ZOg0GxkFuBrtotmjof5QQZykxRDk+25estpXbMB574vy4gSpc2ITMjWjUJVqCGd3UcoJlGnH3CgGIgTS1Drcp4xgj0H58KNqxf/DXnDUV0mss5PPIUMq4PoPLihQ/j9Usqu80EYnvkWdsuYuXe1IAEy6yBw+1JlClMPk+1jRx3ukd2vpA/kI0UfZyB+r4djcSfCZyP/GIVKODpqh22MEEWhUEKAS7kbTRiTGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01RLoPN7VEL2cN72WhKXVkq8",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "INV-0013"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01GbUMu8hL81zkfZTSAnk7Fo",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "PART"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAISqwQKjgEIERgCKkC3Bj7GZwL+bYXCMC+tYZ8kO7e5bD4KNjBZFHM0Q+L8b+wAGa1BMlCybhl9gu5E2pqQVfKGOBCBC408A2gT2YymMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAZzcs9UGEgwu0nvt3ROWW39KPDIaDPqCqzO+3Gx6HiJZHiIwFG/ck+bGUvzIpziM0LqbjMws79PAlHMrRFc0cRDlXznzpz5vi0k4GvaBqlNZhG3aKskCnp1u+xuVfLDnsV8jkqST8hXR0kZEGqoBi/arKsUVI1DvYgcoJR5b30pZ+ZQQacN3AEN6FLJqEcdzjrYJ+xt+FPQqpNGnHnAKk7PqVpA3A7vvHxnBCuNtzeYdLVl57CycZX3zwJO7S6FEnjxpWxc111uDEvRfCWLvKvDE/2xnhO6Lor1s6YHz+fzTDPzrVqLmDKoLnZGsamfocgneOPiMEFmvIwnCnnBlT1c0uZ7ZBy0raXYlEdC079AbbgXVf3wGl9igNO05r5K9V0Y2u4slQWHpC9mOuA2JsdfDiZ+C8Jm1s+42EwB7282m73y9vz4nm7kTggZbIiiy8RtixyZ1xU5C2rK6Q1hgjGn2pID9Mmgl5NHJGeyIFUCCsj1paCw3wEcNVor9m0y2xpnrkrUAPD+RwlGWN/ShpOVHFvIUpBi2nywB1naCfQ4YAQ==",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "text": "Evidence is clear: a partial receipt against INV-0013 from Harbour Books, matching how prior Harbour Books receipts were booked (cash / AR).",
+        "type": "text"
+      },
+      {
+        "id": "toolu_013aboNYj16i97aopHCQuaTF",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-26",
+          "memo": "Partial payment INV-0013 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "821.11",
+              "description": "Receipt from Harbour Books"
+            },
+            {
+              "account": "1100",
+              "credit": "821.11",
+              "description": "Part settlement of INV-0013"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "bl17-inv0013-part"
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01VDd5wuGKkudTaX8QbJ1yU4",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-26",
+          "memo": "Partial payment INV-0013 from Harbour Books",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "821.11",
+              "description": "Receipt from Harbour Books"
+            },
+            {
+              "account": "1100",
+              "credit": "821.11",
+              "description": "Part settlement of INV-0013"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "bl17-inv0013-part"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01AcKbSeGemFF7U94cU9rXCg",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 41,
+          "reasoning": {
+            "evidence": [
+              "bank line 17: 2026-04-26, +821.11, ref 'INV-0013 PART', counterparty Harbour Books",
+              "INV-0013 Harbour Books, issued 2026-04-15, amount 2052.77, outstanding 2052.77",
+              "prior entries 24 and 28 booked Harbour Books receipts (INV-0001, INV-0005) as Dr 1000 / Cr 1100",
+              "history_for 'INV-0013' returns nothing, so this receipt is not already recorded"
+            ],
+            "rule": "Customer receipt settles receivables; partial payment credits AR for the amount received only",
+            "confidence": 0.95,
+            "reason": "The money-in line names INV-0013 and Harbour Books and is flagged PART; 821.11 is less than the 2052.77 outstanding, so it is a partial settlement of that invoice. Booked Dr Cash at bank / Cr Accounts receivable, consistent with how earlier Harbour Books receipts were recorded, leaving 1231.66 outstanding on INV-0013."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "CAIStAMKjgEIERgCKkBC0lHMvilTQ4CnpzfrmVhNjpP9m9bBb/vMEooxlPqvART5tDIhuWNms9CXV4sygrDms3RZlZYPQToG3EEAc8IoMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAavcs9UGEgwJutR7kGx9EgJBtXAaDCvsIktGN6YaUIfqviIw7VyXauCePvxtrMW7y8UdwvtezD+4rIKVr7JGeKS8TICtgQrncpCRoOlEiqDbEPt2KtIBVoA5SLOm4Y0+QAVez5JLdq9RWjW09cZBlnBcaiCE7kNsLFXAbxdH9nyOQTfffFoIBvX37WbUL3eVVXskBKFuEzC5dLVtARWSwusD5oWMmmE7B52/Df1y2a3NB+23AeyE8hGvRyTttoE6GQ165LzFUDio/hfycjIIoC6vySJD+lgUrTPS3DaCmJZrN/opZ7K0/amxjxVlrzaAGlMm8OgxyZPIrIAqY6Lwr/+UvZRxjOIm9r0wBCcSRzbFaCwu5GWRxL/9TfUhZ9l/bbdO4si8VDnGGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01GrUiqVLPSsr89hSfxTmoeL",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_014JFGw1hngf1oh85qUqwoZp",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "One unrecorded bank line existed (id 17, 2026-04-26, +821.11, \"INV-0013 PART\", Harbour Books). Matched it to open invoice INV-0013 (Harbour Books, 2052.77 outstanding) and to prior Harbour Books receipts (entries 24, 28) booked as Dr 1000 / Cr 1100. Posted entry 41 on the bank line's date (2026-04-26, an open period): Dr Cash at bank 821.11 / Cr Accounts receivable 821.11, linked to bank line 17. INV-0013 remains 1231.66 outstanding.\n\nNothing else was recorded: no payout reports exist, and the remaining open invoices (INV-0007 to INV-0012, INV-0014) and open bills (B-0005 to B-0008) have no corresponding bank movement, so no entry is supportable for them. No suspense or miscellaneous accounts used; no lines needed flagging."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

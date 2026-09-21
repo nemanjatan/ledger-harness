@@ -1,0 +1,34 @@
+{
+  "id": "s2-bill_paid_exactly",
+  "seed": 2,
+  "labels": [
+    "bill_paid_exactly"
+  ],
+  "expected": [
+    {
+      "label": "bill_paid_exactly",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-25",
+          "lines": [
+            {
+              "account": "2000",
+              "debit": "367.55",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "367.55"
+            }
+          ],
+          "memo": "Payment B-0005"
+        }
+      ],
+      "note": "The company pays one bill in full."
+    }
+  ]
+}

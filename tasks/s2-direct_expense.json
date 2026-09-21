@@ -1,0 +1,34 @@
+{
+  "id": "s2-direct_expense",
+  "seed": 2,
+  "labels": [
+    "direct_expense"
+  ],
+  "expected": [
+    {
+      "label": "direct_expense",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-05",
+          "lines": [
+            {
+              "account": "6100",
+              "debit": "21.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "21.00"
+            }
+          ],
+          "memo": "GitHub subscription"
+        }
+      ],
+      "note": "A card payment to a known vendor with no bill; the vendor has a default account."
+    }
+  ]
+}

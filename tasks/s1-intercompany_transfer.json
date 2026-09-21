@@ -1,0 +1,34 @@
+{
+  "id": "s1-intercompany_transfer",
+  "seed": 1,
+  "labels": [
+    "intercompany_transfer"
+  ],
+  "expected": [
+    {
+      "label": "intercompany_transfer",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-11",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00",
+              "credit": "0"
+            },
+            {
+              "account": "2200",
+              "debit": "0",
+              "credit": "2000.00"
+            }
+          ],
+          "memo": "Funding from Beta Ltd"
+        }
+      ],
+      "note": "Funding from the sister company is a liability to it, not revenue."
+    }
+  ]
+}

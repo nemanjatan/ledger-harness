@@ -1,0 +1,39 @@
+{
+  "id": "s2-fee_net_payout",
+  "seed": 2,
+  "labels": [
+    "fee_net_payout"
+  ],
+  "expected": [
+    {
+      "label": "fee_net_payout",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-28",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2795.70",
+              "credit": "0"
+            },
+            {
+              "account": "6300",
+              "debit": "84.11",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "2879.81"
+            }
+          ],
+          "memo": "Stripe payout for INV-0012 and INV-0011"
+        }
+      ],
+      "note": "A card processor pays out gross collections net of its fees; the payout report says which invoices."
+    }
+  ]
+}

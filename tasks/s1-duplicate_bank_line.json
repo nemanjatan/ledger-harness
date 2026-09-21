@@ -1,0 +1,35 @@
+{
+  "id": "s1-duplicate_bank_line",
+  "seed": 1,
+  "labels": [
+    "duplicate_bank_line"
+  ],
+  "expected": [
+    {
+      "label": "duplicate_bank_line",
+      "bank_line_ids": [
+        17,
+        18
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-29",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "208.51",
+              "credit": "0"
+            },
+            {
+              "account": "1100",
+              "debit": "0",
+              "credit": "208.51"
+            }
+          ],
+          "memo": "Payment INV-0010"
+        }
+      ],
+      "note": "The bank feed delivered one receipt twice with a different reference."
+    }
+  ]
+}

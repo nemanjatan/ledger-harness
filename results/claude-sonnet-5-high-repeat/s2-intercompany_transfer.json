@@ -1,0 +1,621 @@
+{
+  "task": "s2-intercompany_transfer",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 23.858,
+  "error": null,
+  "score": {
+    "task_id": "s2-intercompany_transfer",
+    "results": [
+      {
+        "label": "intercompany_transfer",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-11 1000": "2000.00",
+          "2026-04-11 2200": "-2000.00"
+        },
+        "posted": {
+          "2026-04-11 1000": "2000.00",
+          "2026-04-11 2200": "-2000.00"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 6,
+    "input_tokens": 11,
+    "output_tokens": 1657,
+    "cache_creation_input_tokens": 3423,
+    "cache_read_input_tokens": 31391,
+    "cost_usd": "0.0314"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 41,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line_id 17: 2026-04-11 cleared +2000.00 from Beta Ltd, reference 'INTERCO FUNDING'",
+          "chart of accounts includes 2200 Due to Beta Ltd (intercompany)",
+          "no matching open invoice for Beta Ltd, no prior history for this reference"
+        ],
+        "rule": "Intercompany cash inflow with no linked invoice is recorded against the dedicated intercompany liability account, not as revenue or suspense.",
+        "confidence": 0.8,
+        "reason": "The bank line is a $2000 receipt explicitly labeled as intercompany funding from Beta Ltd, and the chart of accounts has a specific 'Due to Beta Ltd (intercompany)' liability account for this purpose. It is not a customer receipt against any open invoice, so it belongs there rather than to sales or a miscellaneous/suspense account."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-11",
+          "amount": "2000.00",
+          "reference": "INTERCO FUNDING",
+          "counterparty": "Beta Ltd",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "INTERCO",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "Beta Ltd",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-11",
+        "memo": "Intercompany funding received from Beta Ltd",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2000.00",
+            "description": "Cash received - Beta Ltd interco funding"
+          },
+          {
+            "account": "2200",
+            "credit": "2000.00",
+            "description": "Due to Beta Ltd (intercompany)"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-11",
+        "memo": "Intercompany funding received from Beta Ltd",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2000.00",
+            "description": "Cash received - Beta Ltd interco funding"
+          },
+          {
+            "account": "2200",
+            "credit": "2000.00",
+            "description": "Due to Beta Ltd (intercompany)"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 41,
+        "reasoning": {
+          "evidence": [
+            "bank_line_id 17: 2026-04-11 cleared +2000.00 from Beta Ltd, reference 'INTERCO FUNDING'",
+            "chart of accounts includes 2200 Due to Beta Ltd (intercompany)",
+            "no matching open invoice for Beta Ltd, no prior history for this reference"
+          ],
+          "rule": "Intercompany cash inflow with no linked invoice is recorded against the dedicated intercompany liability account, not as revenue or suspense.",
+          "confidence": 0.8,
+          "reason": "The bank line is a $2000 receipt explicitly labeled as intercompany funding from Beta Ltd, and the chart of accounts has a specific 'Due to Beta Ltd (intercompany)' liability account for this purpose. It is not a customer receipt against any open invoice, so it belongs there rather than to sales or a miscellaneous/suspense account."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Reviewed all unrecorded bank lines. Only one existed: bank line 17, a $2000 cleared receipt on 2026-04-11 from Beta Ltd referenced \"INTERCO FUNDING\". No matching customer invoice or history existed for it, but the chart of accounts has a dedicated \"Due to Beta Ltd (intercompany)\" liability account (2200), so it was posted as Cash (debit) / Due to Beta Ltd intercompany (credit) for $2000, linked to bank line 17. No other bank lines, invoices, or bills required action (all other open invoices/bills have no corresponding bank activity, and per the rules an unpaid invoice with no evidence is left alone).",
+  "transcript": [
+    [
+      {
+        "signature": "Eo0CCpABCBEYAipAWzp9X38Z1/7639KYyEKr0Zk2wpNp3p1+tYROxAhsDfftKzmo2GrRS/zX5K/yvc3rBKn9JSKH95bA/a7XrOeytjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAbL9s9UGEgw1wXjqW1usUQ/iJbcaDNjf5jNyJGSFcluE3CIwGNOCwGUecSc4lvKywPnY/B7NTjpk4w8mz8b9NvYyCZGM/YZFa8FrqkXM9eKG3efWKiqb4xQ4mIy5FjJ03Gkm4VBTbBnCmgB0rS0rlGfJ866LWDE3tEXutdlosBYYAQ==",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01HPodYJt2jSHXooWBt8usZG",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_019PDj5QTFgRKLiQd52Pha54",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01UGvAZkBgRcDR3gckBvpR5N",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01TxEZQtisPCEth9ezA9SvNQ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01MoQLbLJ8C7EJYBEAB7uK2z",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_015BmPtSJpU73kaKnZ5DgKhc",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_014WRWLf7rexinwie44bQuDg",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "ErEDCpABCBEYAipA2kVGdmqnqvwKnHeUtje9eRASgVuBW8GbvY9jMhutKFph/8Jg5DzhcoeLJAKbwiY3uJ8jxD9fUaixhLxKQ/SRfTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAbf9s9UGEgzS6q/dxboNZv8UhggaDLAfPfi6/YTJ7M4baSIwjpbnLIoKvqjmeG5uFfjl5mHVETXE17TrU6ox1/hBEMjqAmfmccDZRUR+fa6RC9DMKs0B9tTjws145Zp7No8x7zOiit6KvohSI3M4IngI4CUwTKs24x9uYNnf/xRJ5FtyrtCurqof6ywKDhijPfORWCoST7vKA57Tnly8C9efr+psO43bL2vKhKmiuiGIm9HiCPi7FhPM0V9BhZvscRElZ6BagIA6NMtDpri1+KS0kA+dxm+Meg4t0W55ZCd+N+sT6bN5aiuQPrD6O+JGg4ZhHv+wzSzUFRIACXXu19IBf8MDfkUD8UPI5q3WcJxF4BNXB9/UtVsuPaT9stU+wRD2oxgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_014GY2DPjua93WUouE8MV9Gc",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "INTERCO"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01WQZ8CdrRvhWB33mU2cknZd",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "Beta Ltd"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "Ev8ECpABCBEYAipA6JAzL7bWofUsR3UfdfsHbzSVIcS03ECXJsnTNBiFaGfd+pXZ9mGzdVVB2SLn1FyROqAn02omoW2AVNCgXA7tQDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAbr9s9UGEgwxbfl7s3uRK+O3TaAaDGeZD6yOcm4cpSYJUCIwV2q2X1LbQK4XjfbRsoeESphtFdP/9bFP++STCRlynVJW5HimFB7qieUCGAmhivVPKpsDJzWO78ReuPa8VWykktNWqXL4fHjiDSdBBDRnrqhGYvMtGNDOq4r0nI8GwMNbuiTWeXuLKJEyqS1leHWPfK783+I9pT9aXbF520Zoj+MVoGEaa+RGkzxZ3Hy8CDWWhjvm+jQweb3EGp8btHs8RVIXSTwCubKZBRJA0zrJD+epZei0UuPF89AnW/8tkBV12Y0uE6bbRw1L8ybq0DUbN9kCG7fPuFQ/qv5JS9zOsTmrUCxghJFpDaHivg2AYurdrfHtBfgoT14L1aCTJf2PvxsFJrXUo2pbo/pm201SpKQjhwsLMEyvT6UpK4dmWEQzHpY/3ble3Mc4PxTWRTSOAfkUKZ8gq8pVu87fl9LAANI1wWCLxDsM/tyzsIozkM7EfCeDf48gMEgIxG8nYtLJToTSUkLerYQVusmDlqemmU7llmK+CFwRwR5bddnmxCf8Ufo+kootisK58aoHkawL3Sl5hPTc6XMydxvWwz8bvDwBfZILPLZcJJrb9gjPXpkGvsElParS2KeKmrGdmkiiOYNZ0cVC2g3gJDAwP3uTGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01EDMdSELJoxi5XibDpXPHRj",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-11",
+          "memo": "Intercompany funding received from Beta Ltd",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00",
+              "description": "Cash received - Beta Ltd interco funding"
+            },
+            {
+              "account": "2200",
+              "credit": "2000.00",
+              "description": "Due to Beta Ltd (intercompany)"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01Xh4fKv9jUB8UEjdjfZBw2b",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-11",
+          "memo": "Intercompany funding received from Beta Ltd",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2000.00",
+              "description": "Cash received - Beta Ltd interco funding"
+            },
+            {
+              "account": "2200",
+              "credit": "2000.00",
+              "description": "Due to Beta Ltd (intercompany)"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01EUwSaoT6qCrLho8aWN5AdB",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 41,
+          "reasoning": {
+            "evidence": [
+              "bank_line_id 17: 2026-04-11 cleared +2000.00 from Beta Ltd, reference 'INTERCO FUNDING'",
+              "chart of accounts includes 2200 Due to Beta Ltd (intercompany)",
+              "no matching open invoice for Beta Ltd, no prior history for this reference"
+            ],
+            "rule": "Intercompany cash inflow with no linked invoice is recorded against the dedicated intercompany liability account, not as revenue or suspense.",
+            "confidence": 0.8,
+            "reason": "The bank line is a $2000 receipt explicitly labeled as intercompany funding from Beta Ltd, and the chart of accounts has a specific 'Due to Beta Ltd (intercompany)' liability account for this purpose. It is not a customer receipt against any open invoice, so it belongs there rather than to sales or a miscellaneous/suspense account."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01PeNmzpXTu8uRhZ2ThGKb1R",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Reviewed all unrecorded bank lines. Only one existed: bank line 17, a $2000 cleared receipt on 2026-04-11 from Beta Ltd referenced \"INTERCO FUNDING\". No matching customer invoice or history existed for it, but the chart of accounts has a dedicated \"Due to Beta Ltd (intercompany)\" liability account (2200), so it was posted as Cash (debit) / Due to Beta Ltd intercompany (credit) for $2000, linked to bank line 17. No other bank lines, invoices, or bills required action (all other open invoices/bills have no corresponding bank activity, and per the rules an unpaid invoice with no evidence is left alone)."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

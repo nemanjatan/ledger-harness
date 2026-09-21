@@ -1,0 +1,34 @@
+{
+  "id": "s1-bank_fee",
+  "seed": 1,
+  "labels": [
+    "bank_fee"
+  ],
+  "expected": [
+    {
+      "label": "bank_fee",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-04-30",
+          "lines": [
+            {
+              "account": "6200",
+              "debit": "12.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "12.00"
+            }
+          ],
+          "memo": "Monthly account fee"
+        }
+      ],
+      "note": "The bank's monthly fee; history shows how it has been booked before."
+    }
+  ]
+}

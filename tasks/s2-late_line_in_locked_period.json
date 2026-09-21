@@ -1,0 +1,34 @@
+{
+  "id": "s2-late_line_in_locked_period",
+  "seed": 2,
+  "labels": [
+    "late_line_in_locked_period"
+  ],
+  "expected": [
+    {
+      "label": "late_line_in_locked_period",
+      "bank_line_ids": [
+        17
+      ],
+      "expected": [
+        {
+          "posting_date": "2026-03-01",
+          "lines": [
+            {
+              "account": "6000",
+              "debit": "45.00",
+              "credit": "0"
+            },
+            {
+              "account": "1000",
+              "debit": "0",
+              "credit": "45.00"
+            }
+          ],
+          "memo": "Courier Express, bank date 2026-02-27"
+        }
+      ],
+      "note": "A line dated in a locked period; it goes into the first open period, never the locked one."
+    }
+  ]
+}

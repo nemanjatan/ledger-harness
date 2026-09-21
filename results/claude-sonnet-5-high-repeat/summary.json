@@ -1,0 +1,55 @@
+{
+  "tasks": 27,
+  "cases": 60,
+  "correct": 56,
+  "held_correct": 0,
+  "unattributed_posted": 0,
+  "precision": 0.9333333333333333,
+  "recall": 0.9333333333333333,
+  "outcomes": {
+    "correct": 56,
+    "extra": 4
+  },
+  "rejections": {},
+  "by_label": {
+    "bank_fee": {
+      "correct": 5
+    },
+    "batch_payment": {
+      "correct": 5
+    },
+    "bill_after_bank_line": {
+      "correct": 5
+    },
+    "bill_paid_exactly": {
+      "correct": 5
+    },
+    "direct_expense": {
+      "correct": 5
+    },
+    "duplicate_bank_line": {
+      "correct": 5
+    },
+    "fee_net_payout": {
+      "correct": 5
+    },
+    "intercompany_transfer": {
+      "correct": 5
+    },
+    "invoice_paid_exactly": {
+      "correct": 5
+    },
+    "late_line_in_locked_period": {
+      "correct": 5
+    },
+    "part_payment": {
+      "correct": 5
+    },
+    "pending_then_cleared_differently": {
+      "extra": 4,
+      "correct": 1
+    }
+  },
+  "cost_usd": "1.3972",
+  "errors": 0
+}

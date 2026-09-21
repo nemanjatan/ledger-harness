@@ -1,0 +1,663 @@
+{
+  "task": "s2-fee_net_payout",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 24.863,
+  "error": null,
+  "score": {
+    "task_id": "s2-fee_net_payout",
+    "results": [
+      {
+        "label": "fee_net_payout",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-28 1000": "2795.70",
+          "2026-04-28 1100": "-2879.81",
+          "2026-04-28 6300": "84.11"
+        },
+        "posted": {
+          "2026-04-28 1000": "2795.70",
+          "2026-04-28 1100": "-2879.81",
+          "2026-04-28 6300": "84.11"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 6,
+    "input_tokens": 11,
+    "output_tokens": 2054,
+    "cache_creation_input_tokens": 3788,
+    "cache_read_input_tokens": 32206,
+    "cost_usd": "0.0365"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 41,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 17: Stripe payout 2795.70 on 2026-04-28",
+          "payout_report 1: gross 2879.81, fees 84.11, net 2795.70, invoices INV-0011 and INV-0012",
+          "open_invoices: INV-0011 (Kestrel Studio) 1260.47 outstanding, INV-0012 (Orbital Coffee) 1619.34 outstanding, sum = 2879.81 matching gross"
+        ],
+        "rule": "Card processor payout: record gross receivable settlement, fee as expense, net as cash received, per payout report linking to specific invoices.",
+        "confidence": 0.95,
+        "reason": "The Stripe payout report ties the net bank deposit to two specific open invoices whose outstanding amounts sum exactly to the gross payout; recording the fee separately and settling both invoices in full matches processor accounting standard practice."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-28",
+          "amount": "2795.70",
+          "reference": "STRIPE PAYOUT",
+          "counterparty": "Stripe",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": [
+        {
+          "id": 1,
+          "processor": "Stripe",
+          "paid_on": "2026-04-28",
+          "gross": "2879.81",
+          "fees": "84.11",
+          "net": "2795.70",
+          "invoices": [
+            "INV-0011",
+            "INV-0012"
+          ]
+        }
+      ]
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "STRIPE",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "validate_entry",
+      "args": {
+        "posting_date": "2026-04-28",
+        "memo": "Stripe payout for INV-0011 and INV-0012, net of processing fees",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2795.70",
+            "description": "Stripe payout net"
+          },
+          {
+            "account": "6300",
+            "debit": "84.11",
+            "description": "Stripe processing fees"
+          },
+          {
+            "account": "1100",
+            "credit": "1260.47",
+            "description": "INV-0011 Kestrel Studio settled"
+          },
+          {
+            "account": "1100",
+            "credit": "1619.34",
+            "description": "INV-0012 Orbital Coffee settled"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-28",
+        "memo": "Stripe payout for INV-0011 and INV-0012, net of processing fees",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "2795.70",
+            "description": "Stripe payout net"
+          },
+          {
+            "account": "6300",
+            "debit": "84.11",
+            "description": "Stripe processing fees"
+          },
+          {
+            "account": "1100",
+            "credit": "1260.47",
+            "description": "INV-0011 Kestrel Studio settled"
+          },
+          {
+            "account": "1100",
+            "credit": "1619.34",
+            "description": "INV-0012 Orbital Coffee settled"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": "stripe-payout-2026-04-28-17"
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 41,
+        "reasoning": {
+          "evidence": [
+            "bank_line 17: Stripe payout 2795.70 on 2026-04-28",
+            "payout_report 1: gross 2879.81, fees 84.11, net 2795.70, invoices INV-0011 and INV-0012",
+            "open_invoices: INV-0011 (Kestrel Studio) 1260.47 outstanding, INV-0012 (Orbital Coffee) 1619.34 outstanding, sum = 2879.81 matching gross"
+          ],
+          "rule": "Card processor payout: record gross receivable settlement, fee as expense, net as cash received, per payout report linking to specific invoices.",
+          "confidence": 0.95,
+          "reason": "The Stripe payout report ties the net bank deposit to two specific open invoices whose outstanding amounts sum exactly to the gross payout; recording the fee separately and settling both invoices in full matches processor accounting standard practice."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 41,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Reviewed the single unrecorded bank line (id 17, Stripe payout $2,795.70 on 2026-04-28). Matched it to payout report #1 showing gross $2,879.81 collected for INV-0011 (Kestrel Studio, $1,260.47) and INV-0012 (Orbital Coffee, $1,619.34), less $84.11 in processing fees, net $2,795.70. Posted entry #41: debit Cash 2,795.70, debit Payment processing fees 84.11, credit Accounts receivable 1,260.47 and 1,619.34, linked to bank line 17. No other unrecorded bank lines remain. Other open invoices/bills have no corresponding bank activity and were left untouched per the one-unpaid-invoice-with-no-evidence rule.",
+  "transcript": [
+    [
+      {
+        "signature": "EoUCCpABCBEYAipAUwD6NuzF01f1Qvdj6DPtHrTyb4RVjuQVxYAienL49OyP9JoELDGtgWP4GaVk7geBSCI1QpV/6hJIbQsuet34TzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAdzns9UGEgz39Fv0GM267887pH8aDFy1DNXSrTqaEaoWaSIw6BWidxG6yJyuoGWsoUUPKcTDrvxxvwGqXUBfdwAN58NwLK7Ag3ALkDgXxTLroC2lKiJW11xfozXgDAip4o2wHGrS3ZUwKJtrIeOB/6MgN3Jd2+ZCGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01Uaw7kBp12a79GhJsqQyWXN",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01X37MBWF1xAZsynxJYwcC7Y",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Dg656Wxf8iVb8j7wdWx75Z",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01JYjQ2gY5kqagB9Bmx7sieP",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01SYRnrrcsavVgnMpMTVA7gM",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01326sjWWBXqujLwRvYot2px",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01Ku7wBDoFbYZULaAirFmpxQ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "EssFCpABCBEYAipAQ99OzT2ibU6SUZdMCNClNlgZ6zZclM6mlytFPEhNML5gUudz7/jXqlKazqWMkvK7uG2xcB6Wwrl81l3uqmpMbjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAeHns9UGEgxedr0yzjy996AcVzIaDKfjJbipeMP0NBMdOCIwo0Xs2NSyVzmMuCGlGqwHPA/isSW3gcT1krkNES5fWgqgcbTkWxblvVTPS26oFxbOKucDPcRPjL77Cf2CM7LRMpXTGSdr45Aoz4XfbsTeqVuwPspf67W1opurolFsUchkg4kNeHsl9LbS5KGgWfxxcsYaZUTqMzahKuo+qAQXrgxUNC7757SGs1DUWMYl3Uwes5oCUhNabcUayIuM+ROwfQNR+81+rMCdMVgWGujsCrmgAwchvMHNlIiJBRqzfYVvJoZEf0ivql+QscmMNHl03FsfjBFW8JriXLkM12ThOLGPOV0GTwukYdySj7wHDwPIyGiaLIIZ0rJl19FFxf0xI+HsmKhdJoStoOJ1PfaKV1H8yxBOaxU4Qaxxmt7Lvy2ouA96QFnZerO5r4hgJZ5NPD2LynrdCx5VQL/t8XQIa7BLul7xfoL8bKdPI0qYJYg/papK6s6dn3/245SqfAbAdFrK0AN2y1qxo4eTXWMuuC3yE+DCNC+BHe8bq4d9+ta5T8APbsT/AriFD2nnF1xY3d6FAabLng1OKSaqFq+Jd8fzl6gR2ku6AAOHMdYw8XCzCDGC0iPS62c/ISVOtRufE4YqVqm3emU38QKWCZZrt3/JkwAboUEdFcHDbH6vfWMT96kxLSXXXoSeObUxoVm84eyMuuTiDSJqvBtUfYZrTCgllNtVs2PhOt8BsPG75ZoPfRXB3EKUw79OthgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01Nc71RW7AEdnhRbRVQT26jW",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "STRIPE"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "ErMGCpABCBEYAipAUg4R9eeliaqPCq7xua12xNGobgZc6E/Yn0Tn0C4YyzQEWoIyUMJ/RzHYT2AHVPXAAYnvODoNWofNiaa9toMVUjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAeXns9UGEgyYHfHDMnDwHiec/nMaDPOzLvzwWLdTkn96tyIwIzTY7LyxOwDfKFXhpq/25G3yiROS+ZW6aWXXWVh0eKeyYzWx87H38jPN22gTFncJKs8EcRiNTqoN5/gzUIlPQHo3iXa4jaL4nJoGKEIaQxnO0IFMTEoYh6ScJaZhZYuX8bptg1TQXJna9ekAdmrCItI/tv+flr+KoPtp6pnGNgLQm6lo95iL+6hZLCnyNB29zaMrJqeZeihkTr8R+kEUxs1NTxLGjARJngbJtR+oyJQv8hssui7Jbxjy2okfq6wLrJOmp8EwoFQB0Fjy/EIP5TVpv3POxn+9RuhvZlRDyGYDOSVveStWwKecQ/ttOoPdIgpeGXRlde/YvQHH9VWmMblCFpt790Ds1PuK3kwnwJ3YwSrGrTiAyfpdT/WQ5BqWwPM126WFLtsvIxKZQiDp5BUG75dLAUHUZ4KMOxdOYqtN2G0mTdPNJgDoxaOng4vfERqQ031rYzzMRlxw5ejID6sNcHtz2drRZ2pISwVumDBdml0269VQNi4XiFaAvkHhpSwLYf0iEdbdArcLUGyK9GSTNPe25gx06HcI3LTRNPY0AW91JgOlcpYffVtIl3NPAJhaC5Gzrh0QTpdZN6rwkkma2iMfubb1hdLeZQHJbu1sv8mykqG1hrJnmex0PwrmS5itxZ16/yE+heOkgx+2YXvR13hlv28lNAMvhwqWhEPmtlUGYC5VU0mCjiTDViZpq8pd4o8ne2TfXxuvLje/Y0h5YLZW12puwL78sgzpS8AuSYul1IcIBYW9Cryq3enLooy01cpG33WXpbKw9JScwzT0ZCRdxwsMBL6VXlAFMen7ts24FE9GYIZGtFIflRwBKDNA0hpKHMyCtAzK/bKgQYjAGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01KxEVo6BPa9TTT649vZAmJs",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-28",
+          "memo": "Stripe payout for INV-0011 and INV-0012, net of processing fees",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2795.70",
+              "description": "Stripe payout net"
+            },
+            {
+              "account": "6300",
+              "debit": "84.11",
+              "description": "Stripe processing fees"
+            },
+            {
+              "account": "1100",
+              "credit": "1260.47",
+              "description": "INV-0011 Kestrel Studio settled"
+            },
+            {
+              "account": "1100",
+              "credit": "1619.34",
+              "description": "INV-0012 Orbital Coffee settled"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "validate_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_011ERw3gBpvH6gynjHPX86Vt",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-28",
+          "memo": "Stripe payout for INV-0011 and INV-0012, net of processing fees",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "2795.70",
+              "description": "Stripe payout net"
+            },
+            {
+              "account": "6300",
+              "debit": "84.11",
+              "description": "Stripe processing fees"
+            },
+            {
+              "account": "1100",
+              "credit": "1260.47",
+              "description": "INV-0011 Kestrel Studio settled"
+            },
+            {
+              "account": "1100",
+              "credit": "1619.34",
+              "description": "INV-0012 Orbital Coffee settled"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ],
+          "idempotency_key": "stripe-payout-2026-04-28-17"
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01JtDg46ZAkPy2hEhaok6oVt",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 41,
+          "reasoning": {
+            "evidence": [
+              "bank_line 17: Stripe payout 2795.70 on 2026-04-28",
+              "payout_report 1: gross 2879.81, fees 84.11, net 2795.70, invoices INV-0011 and INV-0012",
+              "open_invoices: INV-0011 (Kestrel Studio) 1260.47 outstanding, INV-0012 (Orbital Coffee) 1619.34 outstanding, sum = 2879.81 matching gross"
+            ],
+            "rule": "Card processor payout: record gross receivable settlement, fee as expense, net as cash received, per payout report linking to specific invoices.",
+            "confidence": 0.95,
+            "reason": "The Stripe payout report ties the net bank deposit to two specific open invoices whose outstanding amounts sum exactly to the gross payout; recording the fee separately and settling both invoices in full matches processor accounting standard practice."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "EscCCpABCBEYAipAtSu1w0HPr4mOXdrTAFeqsnzAzK/1TF/pQVIyAwLeWxO1+CSZjOyRV9mUyz2pUM0KMLlcjQABChpmba8Lk9VK3TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAfHns9UGEgzi0aqhPn6NrFEP6zwaDHawqF06m+xc4BkwgiIw0mRGAhvtWPn+5TldQXcLo0H/2VbkJKYVmB7t5fyQDO95bAsUYiKWYWyaU60PkdWjKmT4BVTPgAqIozUpHo1hDZJI2QrWarpF++0tSobdRK9WWn0HnmNnCcHH8s3X1nY4CzI99iMYllbAmG9z6Y4fGeQz5vPwHbdxpKxEXQjYEt6mDYEB+6uQ7L/5feH+8mk/2RF8eCglGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01CUqeFv1BHaRvY6YSfTXiNH",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Reviewed the single unrecorded bank line (id 17, Stripe payout $2,795.70 on 2026-04-28). Matched it to payout report #1 showing gross $2,879.81 collected for INV-0011 (Kestrel Studio, $1,260.47) and INV-0012 (Orbital Coffee, $1,619.34), less $84.11 in processing fees, net $2,795.70. Posted entry #41: debit Cash 2,795.70, debit Payment processing fees 84.11, credit Accounts receivable 1,260.47 and 1,619.34, linked to bank line 17. No other unrecorded bank lines remain. Other open invoices/bills have no corresponding bank activity and were left untouched per the one-unpaid-invoice-with-no-evidence rule."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}

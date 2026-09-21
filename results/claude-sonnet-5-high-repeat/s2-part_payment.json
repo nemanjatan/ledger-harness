@@ -1,0 +1,567 @@
+{
+  "task": "s2-part_payment",
+  "agent": "claude-sonnet-5-high",
+  "seconds": 20.765,
+  "error": null,
+  "score": {
+    "task_id": "s2-part_payment",
+    "results": [
+      {
+        "label": "part_payment",
+        "outcome": "correct",
+        "expected": {
+          "2026-04-26 1000": "450.13",
+          "2026-04-26 1100": "-450.13"
+        },
+        "posted": {
+          "2026-04-26 1000": "450.13",
+          "2026-04-26 1100": "-450.13"
+        },
+        "drafted": {},
+        "posted_entries": 1,
+        "detail": ""
+      }
+    ],
+    "unattributed_posted": 0,
+    "unattributed_drafted": 0,
+    "rejections": {},
+    "cases": 1,
+    "posted_cases": 1,
+    "correct": 1,
+    "held_correct": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "outcomes": {
+      "correct": 1
+    }
+  },
+  "usage": {
+    "requests": 5,
+    "input_tokens": 9,
+    "output_tokens": 1522,
+    "cache_creation_input_tokens": 3146,
+    "cache_read_input_tokens": 24925,
+    "cost_usd": "0.0281"
+  },
+  "flags": [],
+  "traces": [
+    {
+      "entry_id": 40,
+      "posted": true,
+      "reasoning": {
+        "evidence": [
+          "bank_line 17: 2026-04-26 cleared +450.13 from Pinecrest Dental, ref 'INV-0007 PART'",
+          "open_invoices: INV-0007 Pinecrest Dental outstanding 1125.33"
+        ],
+        "rule": "Customer receipt referencing an open invoice settles receivables (partial payment reduces AR by amount received).",
+        "confidence": 0.9,
+        "reason": "The bank line explicitly references INV-0007 with 'PART' indicating a partial payment; the invoice is open with sufficient outstanding balance (1125.33) to cover the 450.13 received, so it is recorded as a partial settlement of receivables rather than a full invoice payoff."
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "list_accounts",
+      "args": {},
+      "result": [
+        {
+          "code": "1000",
+          "name": "Cash at bank",
+          "kind": "asset"
+        },
+        {
+          "code": "1100",
+          "name": "Accounts receivable",
+          "kind": "asset"
+        },
+        {
+          "code": "2000",
+          "name": "Accounts payable",
+          "kind": "liability"
+        },
+        {
+          "code": "2200",
+          "name": "Due to Beta Ltd (intercompany)",
+          "kind": "liability"
+        },
+        {
+          "code": "3000",
+          "name": "Owner's equity",
+          "kind": "equity"
+        },
+        {
+          "code": "4000",
+          "name": "Sales",
+          "kind": "revenue"
+        },
+        {
+          "code": "6000",
+          "name": "Office expenses",
+          "kind": "expense"
+        },
+        {
+          "code": "6100",
+          "name": "Software subscriptions",
+          "kind": "expense"
+        },
+        {
+          "code": "6200",
+          "name": "Bank charges",
+          "kind": "expense"
+        },
+        {
+          "code": "6300",
+          "name": "Payment processing fees",
+          "kind": "expense"
+        },
+        {
+          "code": "6900",
+          "name": "Miscellaneous expense",
+          "kind": "expense"
+        },
+        {
+          "code": "9999",
+          "name": "Suspense",
+          "kind": "asset"
+        }
+      ]
+    },
+    {
+      "tool": "list_periods",
+      "args": {},
+      "result": [
+        {
+          "starts_on": "2026-01-01",
+          "ends_on": "2026-01-31",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-02-01",
+          "ends_on": "2026-02-28",
+          "status": "locked"
+        },
+        {
+          "starts_on": "2026-03-01",
+          "ends_on": "2026-03-31",
+          "status": "open"
+        },
+        {
+          "starts_on": "2026-04-01",
+          "ends_on": "2026-04-30",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "tool": "unrecorded_bank_lines",
+      "args": {},
+      "result": [
+        {
+          "id": 17,
+          "booked_on": "2026-04-26",
+          "amount": "450.13",
+          "reference": "INV-0007 PART",
+          "counterparty": "Pinecrest Dental",
+          "status": "cleared"
+        }
+      ]
+    },
+    {
+      "tool": "open_invoices",
+      "args": {},
+      "result": [
+        {
+          "id": 9,
+          "number": "INV-0009",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-03-03",
+          "due_on": "2026-04-02",
+          "amount": "2433.36",
+          "outstanding": "2433.36"
+        },
+        {
+          "id": 10,
+          "number": "INV-0010",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-03-13",
+          "due_on": "2026-04-12",
+          "amount": "1368.69",
+          "outstanding": "1368.69"
+        },
+        {
+          "id": 8,
+          "number": "INV-0008",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-03-16",
+          "due_on": "2026-04-15",
+          "amount": "1466.13",
+          "outstanding": "1466.13"
+        },
+        {
+          "id": 7,
+          "number": "INV-0007",
+          "customer": "Pinecrest Dental",
+          "issued_on": "2026-03-18",
+          "due_on": "2026-04-17",
+          "amount": "1125.33",
+          "outstanding": "1125.33"
+        },
+        {
+          "id": 14,
+          "number": "INV-0014",
+          "customer": "Northwind Traders",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1002.34",
+          "outstanding": "1002.34"
+        },
+        {
+          "id": 12,
+          "number": "INV-0012",
+          "customer": "Orbital Coffee",
+          "issued_on": "2026-04-07",
+          "due_on": "2026-05-07",
+          "amount": "1619.34",
+          "outstanding": "1619.34"
+        },
+        {
+          "id": 13,
+          "number": "INV-0013",
+          "customer": "Harbour Books",
+          "issued_on": "2026-04-09",
+          "due_on": "2026-05-09",
+          "amount": "754.51",
+          "outstanding": "754.51"
+        },
+        {
+          "id": 11,
+          "number": "INV-0011",
+          "customer": "Kestrel Studio",
+          "issued_on": "2026-04-14",
+          "due_on": "2026-05-14",
+          "amount": "1260.47",
+          "outstanding": "1260.47"
+        }
+      ]
+    },
+    {
+      "tool": "open_bills",
+      "args": {},
+      "result": [
+        {
+          "id": 6,
+          "number": "B-0006",
+          "vendor": "Staples",
+          "received_on": "2026-03-10",
+          "due_on": "2026-03-24",
+          "amount": "692.82",
+          "outstanding": "692.82"
+        },
+        {
+          "id": 5,
+          "number": "B-0005",
+          "vendor": "Office Greens",
+          "received_on": "2026-03-18",
+          "due_on": "2026-04-01",
+          "amount": "367.55",
+          "outstanding": "367.55"
+        },
+        {
+          "id": 8,
+          "number": "B-0008",
+          "vendor": "Office Greens",
+          "received_on": "2026-04-16",
+          "due_on": "2026-04-30",
+          "amount": "644.25",
+          "outstanding": "644.25"
+        },
+        {
+          "id": 7,
+          "number": "B-0007",
+          "vendor": "Courier Express",
+          "received_on": "2026-04-18",
+          "due_on": "2026-05-02",
+          "amount": "503.89",
+          "outstanding": "503.89"
+        }
+      ]
+    },
+    {
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "name": "Amazon",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Cloudwave Hosting",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Courier Express",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "GitHub",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Notion Labs",
+          "default_expense_account": "6100"
+        },
+        {
+          "name": "Office Greens",
+          "default_expense_account": "6000"
+        },
+        {
+          "name": "Staples",
+          "default_expense_account": "6000"
+        }
+      ]
+    },
+    {
+      "tool": "payout_reports",
+      "args": {},
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "PART",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "history_for",
+      "args": {
+        "reference_like": "Pinecrest",
+        "limit": 5
+      },
+      "result": []
+    },
+    {
+      "tool": "draft_entry",
+      "args": {
+        "posting_date": "2026-04-26",
+        "memo": "Partial payment received from Pinecrest Dental against INV-0007",
+        "lines": [
+          {
+            "account": "1000",
+            "debit": "450.13",
+            "description": "Bank receipt - Pinecrest Dental"
+          },
+          {
+            "account": "1100",
+            "credit": "450.13",
+            "description": "Partial settlement of INV-0007"
+          }
+        ],
+        "bank_line_ids": [
+          17
+        ],
+        "idempotency_key": null
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40
+      }
+    },
+    {
+      "tool": "post_entry",
+      "args": {
+        "entry_id": 40,
+        "reasoning": {
+          "evidence": [
+            "bank_line 17: 2026-04-26 cleared +450.13 from Pinecrest Dental, ref 'INV-0007 PART'",
+            "open_invoices: INV-0007 Pinecrest Dental outstanding 1125.33"
+          ],
+          "rule": "Customer receipt referencing an open invoice settles receivables (partial payment reduces AR by amount received).",
+          "confidence": 0.9,
+          "reason": "The bank line explicitly references INV-0007 with 'PART' indicating a partial payment; the invoice is open with sufficient outstanding balance (1125.33) to cover the 450.13 received, so it is recorded as a partial settlement of receivables rather than a full invoice payoff."
+        }
+      },
+      "result": {
+        "ok": true,
+        "entry_id": 40,
+        "status": "posted"
+      }
+    }
+  ],
+  "summary": "Recorded the single unrecorded bank line (id 17): a $450.13 cleared receipt from Pinecrest Dental referencing INV-0007 PART, posted 2026-04-26 as a partial AR settlement (Dr Cash 1000 / Cr Accounts Receivable 1100), linked to bank line 17. No other unrecorded bank lines existed; all other open invoices/bills had no corresponding bank activity and were left unposted per instructions.",
+  "transcript": [
+    [
+      {
+        "signature": "Eo4CCpABCBEYAipAbJyZcgfHO99wD9xEgbMSTANYfyD7RA0HTe+CNNwJ4JCqNjWoLD6gi66CYK+Hkz+63RphQY0dBYN5HUVV96DGLzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAfz9s9UGEgwYx8UYf1+KkhM4aKMaDDhD+ri0FmFhCUI5jiIwuph1uh1CKnMDFUIuccQdddCc7POcYRL7Zz4qt1XY/OVX8yq9xzYNCNXdlRvhs0C5Kiv3OIEftkLSFgF5laMaCCh/DrqwOEfkJ5+gSj7SgxBjBkh9oBBRR33ixkQHGAE=",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_0199YKU5JA3a5VaC3DoaFSDZ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_accounts",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01NaEBfvf53PyzBvS3pQU3tK",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_periods",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01SdWpcMBkU3kroNdtrvKAFy",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "unrecorded_bank_lines",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01FyPktKX7vFHVptBMcDF1kD",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_invoices",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01JRFvGDzJKiwr16qr7ASsDL",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "open_bills",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01EteudYmoq7vAZpdZk4Togi",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "list_vendors",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_01XijBG4wkvZu42wqn2caCns",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {},
+        "name": "payout_reports",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "ErgECpABCBEYAipAzzCOTAKAKlllKcIdwUnDR5OzcWwVtaETpjL2KbiTWGlmfyw1r4X/W9C44DqWyy50/nCZ+M0wKMtcwmsWLQPG3TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAYD+s9UGEgxuUYVt86H/Y82Cd9gaDKla7Pw1g3LCM0x0XyIw1V5QX3pMxdW9iOm/Qz/t6xv51PvRbZWxJZ8yq3cRoLA1tM2KywmC54kzvUTZq4b7KtQC5sup5EwmZSn3r3tHqF2Sx3faqmZurjrZpdXh2wwl2oqyPO9nDxRepGdvVYJhFJfvnmre6jGSEGhg+nXlZ69RZxzmuaAXj40nigNRhnPgMIqP6qLIO4lidCH3dwTGV6Bbrv2lk1/TD2bY36ehVG14JFImDIPJWEraCUHrkav9Qaoc1ikf6VIC/MXytSshslmGWpaitlVAHG5Z1FJ4MOHdpNWH+RaoS45wHzan529apVgukIDvPVS7klKc5vrlRd2Q0hiKZabgIFhZQ4NVZNvK5VL8BCYSse4nckYPsk5wrALsthYJGqBHam/kORHrpsML2enaEtO/wJbhlgst823zHz37J0VkTVgP2GSZ8OxM9sTg2SjuilTk/791ZDTwOnAE+Dz1sKdvqYoK9DNjKBoDI4NLMF7j5tYMbmvK4xArOgGhoHpCLgaLgFGMcpKm9/Aq0kR6NBgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01JJMYJrUQB33miu5HU9F7nQ",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "PART"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      },
+      {
+        "id": "toolu_012KwXHgRM2jWNouBg649AsN",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "reference_like": "Pinecrest"
+        },
+        "name": "history_for",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "signature": "EvoECpABCBEYAipA/KjqEoDCkUcwX/ysxXyAUwIAZsIizmn6vkzBqnW1R+AdGaBn/wCDYBtkIMbDYpG1M2/P0v+V2L4cfFbetwjAJDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ2NzAzMTZmMi1iMWJhLTRmOTYtYTIwNy03MmVmNjk2OTNkODmoAYT+s9UGEgytkB3d/WMXXeHVJ/UaDAQLor6PTP+ngPeJLyIw+vJdtqB1aJ+p09s9RvdlVjoNq5prtW0vLoYLUV3VILH8xDNIIa5DJOBAuDUliqhVKpYDrJjTkf9NtSYy+NinWOxORE2EYIDdabMOxi8doZd7Qga8XxkrHo6zPoxowl7otjURa1xi41rn7aH9Wpf908pVoSBDHVQ1Kq2aJGxrjb6oEdBtFpPZjwc7QlLA3Dus7aRBPx+Z52sJsZkemyNC+nUDW91HxSuHfABxonzZHAIU2/e9LIfB1hOXPfOVEX1c4GccHJHthzsN+aPvmrwZ3zPM4EkrNSXlB49+yqkdz/s+yz8sAm2cWV1IZlzUJ3YUYP/a02R0mWvz/qybtffx56EJS6a6QoqmNoFDOvAJx7W4gXy6WPU8tVtJSE0ufIfYS0zE4SiuOHv/KgRhFHT+PTZ7nBeVLbOaNE/cGef6XA2mMbq8sqMsD2eEIGQB9dq9jcIvDVA7Wg9GrelsgsdGbswbxKjpmkKQfUBEhdWOsagxZG81XV9sKaKSGT1yzrUOhZYxGeDmJ5Ued/Bu1A3zcRxe24TGxPCjnX09VxzLcjnm6u9DcP07FO3jZxnK1FZ/e1A07AezQPhEk+0fTkKbdxFJ/xhgBd/2RRgB",
+        "thinking": "",
+        "type": "thinking"
+      },
+      {
+        "id": "toolu_01RpfgUE8fsmyyeuyHtz4Xvo",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "posting_date": "2026-04-26",
+          "memo": "Partial payment received from Pinecrest Dental against INV-0007",
+          "lines": [
+            {
+              "account": "1000",
+              "debit": "450.13",
+              "description": "Bank receipt - Pinecrest Dental"
+            },
+            {
+              "account": "1100",
+              "credit": "450.13",
+              "description": "Partial settlement of INV-0007"
+            }
+          ],
+          "bank_line_ids": [
+            17
+          ]
+        },
+        "name": "draft_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "id": "toolu_01M5dAyRomGtU1iuRUtNsiCU",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "entry_id": 40,
+          "reasoning": {
+            "evidence": [
+              "bank_line 17: 2026-04-26 cleared +450.13 from Pinecrest Dental, ref 'INV-0007 PART'",
+              "open_invoices: INV-0007 Pinecrest Dental outstanding 1125.33"
+            ],
+            "rule": "Customer receipt referencing an open invoice settles receivables (partial payment reduces AR by amount received).",
+            "confidence": 0.9,
+            "reason": "The bank line explicitly references INV-0007 with 'PART' indicating a partial payment; the invoice is open with sufficient outstanding balance (1125.33) to cover the 450.13 received, so it is recorded as a partial settlement of receivables rather than a full invoice payoff."
+          }
+        },
+        "name": "post_entry",
+        "type": "tool_use"
+      }
+    ],
+    [
+      {
+        "text": "Only one unrecorded bank line existed (id 17: $450.13 cleared receipt from Pinecrest Dental referencing \"INV-0007 PART\"). I posted it as a partial settlement of Accounts Receivable against open invoice INV-0007 (outstanding $1,125.33), debiting Cash 1000 and crediting AR 1100 for $450.13, linked to the bank line.\n\nNo other unrecorded bank lines, payout reports, or discrepancies needed action. Open invoices/bills without any bank evidence were left untouched per the rule that an unpaid invoice with no evidence gets no entry.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01PHKVHLtHyCS1K1YdSnwCPz",
+        "caller": {
+          "type": "direct"
+        },
+        "input": {
+          "summary": "Recorded the single unrecorded bank line (id 17): a $450.13 cleared receipt from Pinecrest Dental referencing INV-0007 PART, posted 2026-04-26 as a partial AR settlement (Dr Cash 1000 / Cr Accounts Receivable 1100), linked to bank line 17. No other unrecorded bank lines existed; all other open invoices/bills had no corresponding bank activity and were left unposted per instructions."
+        },
+        "name": "done",
+        "type": "tool_use"
+      }
+    ]
+  ]
+}
